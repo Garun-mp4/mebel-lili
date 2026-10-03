@@ -6,10 +6,10 @@ export const PAGE_HTML = /* html */ String.raw`
 <nav aria-label="Основная навигация" class="cb-site-header__nav">
 <div class="cb-site-header__logo-wrap">
 <a aria-current="page" class="custom-logo-link lili-logo" href="#top" rel="home">
-<img alt="Mebel Lili" class="custom-logo" src="/assets/lili-logo.svg"/>
+<img alt="Mebel Lili" class="custom-logo" src="/assets/lili-logo.png" width="1254" height="1254"/>
 </a>
 <a class="cb-site-header__logo--dark lili-logo lili-logo--dark" href="#top">
-<img alt="Mebel Lili" class="custom-logo" src="/assets/lili-logo.svg"/>
+<img alt="Mebel Lili" class="custom-logo" src="/assets/lili-logo.png" width="1254" height="1254"/>
 </a>
 </div>
 <button aria-controls="cb-primary-menu" aria-expanded="false" aria-label="Открыть меню" class="cb-site-header__burger" data-label-close="Закрыть меню" data-label-open="Открыть меню">
@@ -747,12 +747,12 @@ export const PAGE_HTML = /* html */ String.raw`
 <footer class="cb-site-footer" role="contentinfo">
 <div class="cb-site-footer__top">
 <div class="cb-site-footer__newsletter lili-footer-brand">
-<img src="/assets/lili-logo.svg" alt="Mebel Lili"/>
+<img src="/assets/lili-logo.png" alt="Mebel Lili" width="1254" height="1254" loading="lazy"/>
 <p class="cb-site-footer__newsletter-heading">МЕБЕЛЬ, СОБРАННАЯ ВОКРУГ ВАШЕГО ПРОСТРАНСТВА.</p>
 <p class="cb-site-footer__newsletter-text">Кухни · шкафы · корпусная мебель · мебель на заказ</p>
 </div>
 <div class="cb-site-footer__contact">
-<div class="footer-mark">ML</div>
+<div class="footer-mark"><img src="/assets/lili-logo.png" alt="" width="1254" height="1254" loading="lazy"/></div>
 <address class="cb-site-footer__address">Mebel Lili<br/>
 <br/>Самара, посёлок Кряж<br/>Камышинская улица, 28</address>
 <div class="cb-site-footer__contact-divider">

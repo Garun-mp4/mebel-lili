@@ -1,5 +1,15 @@
 [
   {
+    "file": "public/assets/lili-logo.png",
+    "matchesArchiveFile": "White Lily Furniture Logo.png",
+    "classification": "logo",
+    "dimensions": [1254, 1254],
+    "sha256": "4c4eeccfdae59cdcef52d8500811f72510c259382b8aafe7270026cd6ef73fc2",
+    "hasTransparency": true,
+    "usage": "header-footer-favicon",
+    "selectedByUser": true
+  },
+  {
     "file": "4a27c52c-5a8c-4563-b6d1-68cb76f389a7.png",
     "classification": "unverified",
     "dimensions": [

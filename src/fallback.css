@@ -34,8 +34,8 @@ button:disabled{cursor:wait;opacity:.55}
 .cb-site-header__nav{height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 .75rem;gap:1.5rem}
 .cb-site-header__logo-wrap{position:relative;z-index:3;display:flex;align-items:center}
 .lili-logo{display:flex;align-items:center;min-height:44px;text-decoration:none}
-.lili-logo img{width:100px;height:auto;filter:brightness(0) invert(1)}
-.cb-site-header.is-scrolled .lili-logo img,.cb-site-header.is-open .lili-logo img{filter:none}
+.lili-logo img{width:44px;height:44px;object-fit:contain;filter:none}
+.cb-site-header.is-scrolled .lili-logo img,.cb-site-header.is-open .lili-logo img{filter:brightness(0)}
 .cb-site-header__logo--dark{display:none}
 .cb-site-header__menu-wrapper{margin-left:auto}
 .cb-site-header__menu{list-style:none;padding:0;margin:0;display:flex;align-items:center;gap:.25rem}
@@ -179,11 +179,12 @@ button:disabled{cursor:wait;opacity:.55}
 .cb-site-footer{background:var(--neutral-600);color:var(--neutral-100);margin-top:0;padding:4.5rem 1.5rem 1.25rem}
 .cb-site-footer__top{display:grid;grid-template-columns:1fr 1fr;gap:5rem;padding-bottom:5rem}
 .lili-footer-brand{display:flex;flex-direction:column;align-items:flex-start;max-width:36rem}
-.lili-footer-brand>img{width:145px;filter:brightness(0) invert(1);margin-bottom:2.2rem}
+.lili-footer-brand>img{width:145px;height:145px;object-fit:contain;filter:none;margin-bottom:2.2rem}
 .cb-site-footer__newsletter-heading{font-family:var(--font-secondary);font-size:1.8rem;font-weight:400;line-height:1.05;margin:0 0 1rem;text-transform:uppercase}
 .cb-site-footer__newsletter-text{font-size:.75rem;text-transform:uppercase;color:var(--neutral-300)}
 .cb-site-footer__contact{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:1.5rem;align-items:start}
-.footer-mark{width:3rem;height:3rem;border:1px solid var(--neutral-300);border-radius:50%;display:grid;place-items:center;font-size:.75rem}
+.footer-mark{width:3rem;height:3rem;display:grid;place-items:center}
+.footer-mark img{width:100%;height:100%;object-fit:contain}
 .cb-site-footer__address{font-style:normal;font-size:.78rem;line-height:1.45;text-transform:uppercase;color:var(--neutral-300)}
 .cb-site-footer__contact-divider{width:1px;height:100%;background:rgba(255,255,255,.2)}
 .cb-site-footer__contact-links{display:flex;flex-direction:column;gap:.6rem}
@@ -214,7 +215,7 @@ button:disabled{cursor:wait;opacity:.55}
   .cb-block{width:var(--width-content);margin-block-start:var(--margin-sm-top,0);margin-block-end:var(--margin-sm-bottom,0)}
   .cb-fullbleed--both{width:100%}
   .cb-site-header{background:var(--neutral-100);color:var(--neutral-600);border-bottom-color:var(--neutral-300)}
-  .lili-logo img{width:105px;filter:none}
+  .lili-logo img{filter:brightness(0)}
   .cb-site-header__burger{display:block}
   .cb-site-header__menu-wrapper{position:fixed;top:var(--header-height);left:0;right:0;height:calc(100dvh - var(--header-height));background:var(--neutral-100);padding:1.25rem;transform:translateY(-110%);opacity:0;visibility:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .25s ease,visibility .25s;z-index:2}
   .cb-site-header.is-open .cb-site-header__menu-wrapper{transform:translateY(0);opacity:1;visibility:visible}
