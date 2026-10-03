@@ -1,4 +1,5 @@
 export const PAGE_HTML = /* html */ String.raw`
+
 <div id="page">
 <a class="skip-link screen-reader-text" href="#content">Перейти к содержимому</a>
 <header class="cb-site-header has-dark-logo" role="banner">
@@ -52,15 +53,19 @@ export const PAGE_HTML = /* html */ String.raw`
 <div class="hero-frontpage__content">
 <h1 class="hero-frontpage__heading">МЕБЕЛЬ ДЛЯ<br/>ВАШЕГО ПРОСТРАНСТВА</h1>
 <p class="hero-frontpage__intro">Кухни, шкафы и корпусная мебель на заказ. Обсудим планировку, материалы и то, как вы хотите пользоваться своим пространством.</p>
-<form class="lead-form hero-lead-form" data-form-name="hero">
+<form class="lead-form hero-lead-form" data-form-name="hero" action="/api/leads" method="post">
+<div class="form-honeypot" aria-hidden="true">
+<label>Ваш сайт<input name="website" tabindex="-1" autocomplete="off"/>
+</label>
+</div>
 <div class="hero-form-fields">
 <label>
 <span>Имя</span>
-<input name="name" autocomplete="name" placeholder="Как к вам обращаться" required/>
+<input name="name" maxlength="80" autocomplete="name" placeholder="Как к вам обращаться" required/>
 </label>
 <label>
 <span>Телефон</span>
-<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required/>
+<input name="phone" type="tel" maxlength="32" inputmode="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required/>
 </label>
 <button class="cb-button cb-btn--primary lead-submit" type="submit">
 <span class="cb-button__title">Обсудить проект</span>
@@ -68,8 +73,9 @@ export const PAGE_HTML = /* html */ String.raw`
 </span>
 </button>
 </div>
-<p class="lead-form__status" aria-live="polite">
+<p class="lead-form__status" aria-live="polite" role="status">
 </p>
+<p class="form-purpose">Оставляя заявку, вы просите связаться с вами по указанному телефону.</p>
 </form>
 </div>
 <div aria-hidden="true" class="hero-frontpage__ticker" style="--ticker-duration:120s">
@@ -491,14 +497,18 @@ export const PAGE_HTML = /* html */ String.raw`
 </div>
 </div>
 <div class="newsletter__form">
-<form class="lead-form mid-lead-form" data-form-name="mid">
+<form class="lead-form mid-lead-form" data-form-name="mid" action="/api/leads" method="post">
+<div class="form-honeypot" aria-hidden="true">
+<label>Ваш сайт<input name="website" tabindex="-1" autocomplete="off"/>
+</label>
+</div>
 <label>
 <span>Ваше имя</span>
-<input name="name" autocomplete="name" placeholder="Имя" required/>
+<input name="name" maxlength="80" autocomplete="name" placeholder="Имя" required/>
 </label>
 <label>
 <span>Телефон</span>
-<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required/>
+<input name="phone" type="tel" maxlength="32" inputmode="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required/>
 </label>
 <label>
 <span>Что планируете</span>
@@ -515,8 +525,9 @@ export const PAGE_HTML = /* html */ String.raw`
 <span>Получить консультацию</span>
 <span aria-hidden="true">→</span>
 </button>
-<p class="lead-form__status" aria-live="polite">
+<p class="lead-form__status" aria-live="polite" role="status">
 </p>
+<p class="form-purpose">Оставляя заявку, вы просите связаться с вами по указанному телефону.</p>
 </form>
 </div>
 </section>
@@ -525,21 +536,124 @@ export const PAGE_HTML = /* html */ String.raw`
 <div class="inner">
 <div class="post-gallery__headerline">
 <h2 class="post-gallery__heading">ПРОЕКТЫ И ДЕТАЛИ</h2>
-<p>Несколько направлений и решений, чтобы понять характер работ.</p>
+<div class="gallery-controls">
+<button type="button" data-gallery="previous" aria-label="Предыдущие фотографии" aria-controls="project-track">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+<path d="M20 12H4m7-7-7 7 7 7" stroke="currentColor" stroke-width="1.5"/>
+</svg>
+</button>
+<button type="button" data-gallery="pause" aria-pressed="false">Пауза</button>
+<button type="button" data-gallery="next" aria-label="Следующие фотографии" aria-controls="project-track">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+<path d="M4 12h16m-7-7 7 7-7 7" stroke="currentColor" stroke-width="1.5"/>
+</svg>
+</button>
 </div>
-<div class="swiper">
+</div>
+</div>
+<div class="swiper" id="project-track" tabindex="0" role="region" aria-label="Фотографии мебели — листайте стрелками или свайпом">
 <div class="swiper-wrapper">
 <article class="post-gallery__item swiper-slide">
 <a class="link" href="#request">
 <header>
-<span class="item__label item__title">Кухня с контрастной столешницей</span>
-<span class="item__label item__date">КУХНИ</span>
+<span class="item__label item__title">Кухня с витринами</span>
+<span class="item__label item__date">КУХНЯ</span>
 </header>
 <div class="thumbnail thumbnail--img">
-<img src="/assets/hero-kitchen.webp" alt="Кухня с контрастной столешницей" loading="lazy"/>
+<img src="/assets/yandex-main-kitchen.webp" alt="Кухня с витринами — фотография Mebel Lili из Яндекс Карт" width="707" height="1024" loading="lazy"/>
 </div>
 <div class="excerpt">
-<p class="excerpt__text">Комбинация светлых фасадов и тёмной рабочей зоны.</p>
+<p class="excerpt__text">Стеклянные фасады и контрастная рабочая зона. Фото из карточки Mebel Lili.</p>
+<span class="read-more">
+<span>обсудить похожее решение</span>
+<span aria-hidden="true">→</span>
+</span>
+</div>
+</a>
+</article>
+<article class="post-gallery__item swiper-slide">
+<a class="link" href="#request">
+<header>
+<span class="item__label item__title">Шкаф в прихожей</span>
+<span class="item__label item__date">ШКАФЫ</span>
+</header>
+<div class="thumbnail thumbnail--img">
+<img src="/assets/yandex-hallway.webp" alt="Шкаф в прихожей — фотография Mebel Lili из Яндекс Карт" width="576" height="1024" loading="lazy"/>
+</div>
+<div class="excerpt">
+<p class="excerpt__text">Композиция прихожей. Фото к отзыву ринатты р.</p>
+<span class="read-more">
+<span>обсудить похожее решение</span>
+<span aria-hidden="true">→</span>
+</span>
+</div>
+</a>
+</article>
+<article class="post-gallery__item swiper-slide">
+<a class="link" href="#request">
+<header>
+<span class="item__label item__title">Высокий шкаф</span>
+<span class="item__label item__date">ШКАФЫ</span>
+</header>
+<div class="thumbnail thumbnail--img">
+<img src="/assets/yandex-wardrobe.webp" alt="Высокий шкаф — фотография Mebel Lili из Яндекс Карт" width="768" height="1024" loading="lazy"/>
+</div>
+<div class="excerpt">
+<p class="excerpt__text">Лаконичные светлые фасады. Фото к отзыву Сергея Ульянова.</p>
+<span class="read-more">
+<span>обсудить похожее решение</span>
+<span aria-hidden="true">→</span>
+</span>
+</div>
+</a>
+</article>
+<article class="post-gallery__item swiper-slide">
+<a class="link" href="#request">
+<header>
+<span class="item__label item__title">Тумба под раковину</span>
+<span class="item__label item__date">ТУМБЫ</span>
+</header>
+<div class="thumbnail thumbnail--img">
+<img src="/assets/yandex-vanity.webp" alt="Тумба под раковину — фотография Mebel Lili из Яндекс Карт" width="768" height="1024" loading="lazy"/>
+</div>
+<div class="excerpt">
+<p class="excerpt__text">Подвесная тумба с деревянной столешницей. Фото к отзыву Сергея Ульянова.</p>
+<span class="read-more">
+<span>обсудить похожее решение</span>
+<span aria-hidden="true">→</span>
+</span>
+</div>
+</a>
+</article>
+<article class="post-gallery__item swiper-slide">
+<a class="link" href="#request">
+<header>
+<span class="item__label item__title">Хранение с нишей</span>
+<span class="item__label item__date">ШКАФЫ</span>
+</header>
+<div class="thumbnail thumbnail--img">
+<img src="/assets/yandex-storage.webp" alt="Хранение с нишей — фотография Mebel Lili из Яндекс Карт" width="768" height="1024" loading="lazy"/>
+</div>
+<div class="excerpt">
+<p class="excerpt__text">Шкаф с открытой нишей. Фото к отзыву Сергея Ульянова.</p>
+<span class="read-more">
+<span>обсудить похожее решение</span>
+<span aria-hidden="true">→</span>
+</span>
+</div>
+</a>
+</article>
+<article class="post-gallery__item swiper-slide">
+<a class="link" href="#request">
+<header>
+<span class="item__label item__title">Подвесная тумба</span>
+<span class="item__label item__date">ДЕТАЛИ</span>
+</header>
+<div class="thumbnail thumbnail--img">
+<img src="/assets/yandex-vanity-detail.webp" alt="Подвесная тумба — фотография Mebel Lili из Яндекс Карт" width="1024" height="768" loading="lazy"/>
+</div>
+<div class="excerpt">
+<p class="excerpt__text">Светлые фасады и фактура столешницы. Фото к отзыву Сергея Ульянова.</p>
 <span class="read-more">
 <span>обсудить похожее решение</span>
 <span aria-hidden="true">→</span>
@@ -551,157 +665,13 @@ export const PAGE_HTML = /* html */ String.raw`
 <a class="link" href="#request">
 <header>
 <span class="item__label item__title">Светлая кухня</span>
-<span class="item__label item__date">КУХНИ</span>
+<span class="item__label item__date">КУХНЯ</span>
 </header>
 <div class="thumbnail thumbnail--img">
-<img src="/assets/kitchen-classic.webp" alt="Светлая кухня" loading="lazy"/>
+<img src="/assets/yandex-kitchen.webp" alt="Светлая кухня — фотография Mebel Lili из Яндекс Карт" width="1024" height="768" loading="lazy"/>
 </div>
 <div class="excerpt">
-<p class="excerpt__text">Классическая композиция с высокой системой хранения.</p>
-<span class="read-more">
-<span>обсудить похожее решение</span>
-<span aria-hidden="true">→</span>
-</span>
-</div>
-</a>
-</article>
-<article class="post-gallery__item swiper-slide">
-<a class="link" href="#request">
-<header>
-<span class="item__label item__title">Шкаф для прихожей</span>
-<span class="item__label item__date">ШКАФЫ</span>
-</header>
-<div class="thumbnail thumbnail--img">
-<img src="/assets/hall-storage-portrait.webp" alt="Шкаф для прихожей" loading="lazy"/>
-</div>
-<div class="excerpt">
-<p class="excerpt__text">Высокое хранение и встроенная тумба в единой композиции.</p>
-<span class="read-more">
-<span>обсудить похожее решение</span>
-<span aria-hidden="true">→</span>
-</span>
-</div>
-</a>
-</article>
-<article class="post-gallery__item swiper-slide">
-<a class="link" href="#request">
-<header>
-<span class="item__label item__title">Кухонные механизмы</span>
-<span class="item__label item__date">ДЕТАЛИ</span>
-</header>
-<div class="thumbnail thumbnail--img">
-<img src="/assets/drawer-detail.webp" alt="Кухонные механизмы" loading="lazy"/>
-</div>
-<div class="excerpt">
-<p class="excerpt__text">Организация ящиков и доступ к повседневным предметам.</p>
-<span class="read-more">
-<span>обсудить похожее решение</span>
-<span aria-hidden="true">→</span>
-</span>
-</div>
-</a>
-</article>
-<article class="post-gallery__item swiper-slide">
-<a class="link" href="#request">
-<header>
-<span class="item__label item__title">Тумба с каменной чашей</span>
-<span class="item__label item__date">КОРПУСНАЯ МЕБЕЛЬ</span>
-</header>
-<div class="thumbnail thumbnail--img">
-<img src="/assets/stone-detail.webp" alt="Тумба с каменной чашей" loading="lazy"/>
-</div>
-<div class="excerpt">
-<p class="excerpt__text">Фактурный акцент и лаконичная подвесная конструкция.</p>
-<span class="read-more">
-<span>обсудить похожее решение</span>
-<span aria-hidden="true">→</span>
-</span>
-</div>
-</a>
-</article>
-<article class="post-gallery__item swiper-slide">
-<a class="link" href="#request">
-<header>
-<span class="item__label item__title">Кухня с контрастной столешницей</span>
-<span class="item__label item__date">КУХНИ</span>
-</header>
-<div class="thumbnail thumbnail--img">
-<img src="/assets/hero-kitchen.webp" alt="Кухня с контрастной столешницей" loading="lazy"/>
-</div>
-<div class="excerpt">
-<p class="excerpt__text">Комбинация светлых фасадов и тёмной рабочей зоны.</p>
-<span class="read-more">
-<span>обсудить похожее решение</span>
-<span aria-hidden="true">→</span>
-</span>
-</div>
-</a>
-</article>
-<article class="post-gallery__item swiper-slide">
-<a class="link" href="#request">
-<header>
-<span class="item__label item__title">Светлая кухня</span>
-<span class="item__label item__date">КУХНИ</span>
-</header>
-<div class="thumbnail thumbnail--img">
-<img src="/assets/kitchen-classic.webp" alt="Светлая кухня" loading="lazy"/>
-</div>
-<div class="excerpt">
-<p class="excerpt__text">Классическая композиция с высокой системой хранения.</p>
-<span class="read-more">
-<span>обсудить похожее решение</span>
-<span aria-hidden="true">→</span>
-</span>
-</div>
-</a>
-</article>
-<article class="post-gallery__item swiper-slide">
-<a class="link" href="#request">
-<header>
-<span class="item__label item__title">Шкаф для прихожей</span>
-<span class="item__label item__date">ШКАФЫ</span>
-</header>
-<div class="thumbnail thumbnail--img">
-<img src="/assets/hall-storage-portrait.webp" alt="Шкаф для прихожей" loading="lazy"/>
-</div>
-<div class="excerpt">
-<p class="excerpt__text">Высокое хранение и встроенная тумба в единой композиции.</p>
-<span class="read-more">
-<span>обсудить похожее решение</span>
-<span aria-hidden="true">→</span>
-</span>
-</div>
-</a>
-</article>
-<article class="post-gallery__item swiper-slide">
-<a class="link" href="#request">
-<header>
-<span class="item__label item__title">Кухонные механизмы</span>
-<span class="item__label item__date">ДЕТАЛИ</span>
-</header>
-<div class="thumbnail thumbnail--img">
-<img src="/assets/drawer-detail.webp" alt="Кухонные механизмы" loading="lazy"/>
-</div>
-<div class="excerpt">
-<p class="excerpt__text">Организация ящиков и доступ к повседневным предметам.</p>
-<span class="read-more">
-<span>обсудить похожее решение</span>
-<span aria-hidden="true">→</span>
-</span>
-</div>
-</a>
-</article>
-<article class="post-gallery__item swiper-slide">
-<a class="link" href="#request">
-<header>
-<span class="item__label item__title">Тумба с каменной чашей</span>
-<span class="item__label item__date">КОРПУСНАЯ МЕБЕЛЬ</span>
-</header>
-<div class="thumbnail thumbnail--img">
-<img src="/assets/stone-detail.webp" alt="Тумба с каменной чашей" loading="lazy"/>
-</div>
-<div class="excerpt">
-<p class="excerpt__text">Фактурный акцент и лаконичная подвесная конструкция.</p>
+<p class="excerpt__text">Угловая композиция с высокими модулями. Фото к отзыву Сергея Сергеева.</p>
 <span class="read-more">
 <span>обсудить похожее решение</span>
 <span aria-hidden="true">→</span>
@@ -711,13 +681,15 @@ export const PAGE_HTML = /* html */ String.raw`
 </article>
 </div>
 </div>
-</div>
+<p class="gallery-source">
+<a href="https://yandex.com/maps/org/mebel_lili/1806470657/photos/" target="_blank" rel="noopener noreferrer">Фотографии из карточки Mebel Lili на Яндекс Картах ↗</a>
+</p>
 </section>
 
 <section id="request" class="cb-block cb-block--contact lili-contact" style="--margin-lg-top:100px;--margin-lg-bottom:100px;--margin-md-top:45px;--margin-md-bottom:50px;--margin-sm-top:20px;--margin-sm-bottom:20px;">
 <div class="contact__inner">
 <div class="contact__left">
-<p class="contact__eyebrow">MEBEL LILI · САМАРА</p>
+
 <h2 class="contact__heading">ОБСУДИМ ВАШ ПРОЕКТ</h2>
 <div class="contact__text">
 <p>Расскажите, какая мебель нужна и для какого помещения. Можно начать с идеи, фотографии или примерных размеров.</p>
@@ -738,18 +710,22 @@ export const PAGE_HTML = /* html */ String.raw`
 </div>
 </div>
 <div class="contact__right">
-<form class="contact__form lead-form" data-form-name="contact">
+<form class="contact__form lead-form" data-form-name="contact" action="/api/leads" method="post">
+<div class="form-honeypot" aria-hidden="true">
+<label>Ваш сайт<input name="website" tabindex="-1" autocomplete="off"/>
+</label>
+</div>
 <div class="contact__form-field">
 <label for="contact-name">Имя</label>
-<input autocomplete="name" id="contact-name" name="contact_name" placeholder="Как к вам обращаться" required type="text"/>
+<input autocomplete="name" id="contact-name" name="contact_name" maxlength="80" placeholder="Как к вам обращаться" required type="text"/>
 </div>
 <div class="contact__form-field">
 <label for="contact-phone">Телефон</label>
-<input autocomplete="tel" id="contact-phone" name="contact_phone" placeholder="+7 ___ ___-__-__" required type="tel" inputmode="tel"/>
+<input autocomplete="tel" id="contact-phone" name="contact_phone" placeholder="+7 ___ ___-__-__" required type="tel" maxlength="32" inputmode="tel"/>
 </div>
 <div class="contact__form-field">
 <label for="contact-message">Комментарий</label>
-<textarea id="contact-message" name="contact_message" placeholder="Коротко опишите задачу" rows="3">
+<textarea id="contact-message" name="contact_message" placeholder="Коротко опишите задачу" rows="3" maxlength="1500">
 </textarea>
 </div>
 <button class="contact-button" type="submit">
@@ -757,8 +733,9 @@ export const PAGE_HTML = /* html */ String.raw`
 <span aria-hidden="true" class="cb-button__arrow">
 </span>
 </button>
-<p aria-live="polite" class="contact__form-status lead-form__status">
+<p aria-live="polite" class="contact__form-status lead-form__status" role="status">
 </p>
+<p class="form-purpose">Оставляя заявку, вы просите связаться с вами по указанному телефону.</p>
 </form>
 </div>
 </div>
@@ -796,4 +773,5 @@ export const PAGE_HTML = /* html */ String.raw`
 </div>
 </footer>
 </div>
+
 `;

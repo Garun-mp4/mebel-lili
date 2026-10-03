@@ -3,6 +3,8 @@ import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { Readable } from 'node:stream';
+import { handleLeadRequest } from './server/leads.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(__dirname, 'dist');
@@ -46,6 +48,24 @@ async function sendFile(res, filePath) {
 
 async function serve(req, res) {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+  if (url.pathname === '/api/leads') {
+    const headers = new Headers();
+    for (const [key, value] of Object.entries(req.headers)) if (value) headers.set(key, Array.isArray(value) ? value.join(', ') : value);
+    headers.set('x-forwarded-for', req.socket.remoteAddress || 'local');
+    const request = new Request(url, {
+      method: req.method, headers,
+      ...(!['GET', 'HEAD'].includes(req.method) ? { body: Readable.toWeb(req), duplex: 'half' } : {})
+    });
+    const response = await handleLeadRequest(request);
+    res.writeHead(response.status, Object.fromEntries(response.headers));
+    res.end(Buffer.from(await response.arrayBuffer()));
+    return;
+  }
+  if (url.pathname.startsWith('/api/')) {
+    res.writeHead(404, { 'content-type': 'application/json' });
+    res.end(JSON.stringify({ ok: false, message: 'Not found' }));
+    return;
+  }
   let pathname;
   try {
     pathname = decodeURIComponent(url.pathname);

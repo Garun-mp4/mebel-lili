@@ -44,16 +44,54 @@ function installForms() {
   document.querySelectorAll('.lead-form').forEach((form) => {
     if (form.dataset.localBound) return;
     form.dataset.localBound = '1';
-    form.addEventListener('submit', (event) => {
+    let submitting = false;
+    const phone = form.querySelector('input[type="tel"]');
+    phone.addEventListener('input', () => phone.setCustomValidity(''));
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      if (submitting) return;
+      const digits = phone.value.replace(/\D/g, '');
+      phone.setCustomValidity(digits.length >= 10 && digits.length <= 15 && /^[+\d\s().-]+$/.test(phone.value) ? '' : 'Введите телефон: от 10 до 15 цифр.');
       if (!form.reportValidity()) return;
-      const status = form.querySelector('.lead-form__status, .contact__form-status');
-      if (status) {
-        status.classList.remove('is-error');
+      const status = form.querySelector('.lead-form__status');
+      const button = form.querySelector('button[type="submit"]');
+      const fields = new FormData(form);
+      const payload = {
+        source: form.dataset.formName,
+        name: fields.get('name') || fields.get('contact_name') || '',
+        phone: fields.get('phone') || fields.get('contact_phone') || '',
+        project: fields.get('project') || form.dataset.project || '',
+        message: fields.get('contact_message') || '',
+        website: fields.get('website') || ''
+      };
+      submitting = true;
+      button.disabled = true;
+      form.setAttribute('aria-busy', 'true');
+      status.classList.remove('is-error', 'is-success');
+      status.textContent = 'Отправляем заявку…';
+      try {
+        const response = await fetch('/api/leads', {
+          method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(payload), signal: AbortSignal.timeout(20_000)
+        });
+        const data = await response.json();
+        if (!response.ok || data.ok !== true) throw new Error(data.message || 'Заявка не отправлена. Попробуйте позже или позвоните нам.');
         status.classList.add('is-success');
-        status.textContent = 'Спасибо! Это демонстрация формы — заявка сейчас не отправляется.';
+        status.textContent = data.message;
+        form.reset();
+        delete form.dataset.project;
+      } catch (error) {
+        status.classList.add('is-error');
+        status.textContent = error.name === 'TimeoutError' || error.name === 'AbortError'
+          ? 'Не удалось подтвердить отправку. Позвоните: +7 (917) 037-25-63 или попробуйте позже.'
+          : error.message === 'Failed to fetch'
+            ? 'Нет связи с сервером. Проверьте интернет или позвоните: +7 (917) 037-25-63.'
+            : error.message;
+      } finally {
+        submitting = false;
+        button.disabled = false;
+        form.removeAttribute('aria-busy');
       }
-      form.reset();
     });
   });
 }
@@ -148,33 +186,86 @@ function installTextReveal() {
 }
 
 function installGallery() {
-  const scroller = document.querySelector('.lili-projects .swiper');
+  const section = document.querySelector('.lili-projects');
+  const scroller = section?.querySelector('.swiper');
   if (!scroller || scroller.dataset.localBound) return;
   scroller.dataset.localBound = '1';
-  let paused = false;
+  const wrapper = scroller.querySelector('.swiper-wrapper');
+  [...wrapper.children].forEach((card) => {
+    const clone = card.cloneNode(true);
+    clone.classList.add('gallery-clone');
+    clone.setAttribute('aria-hidden', 'true');
+    clone.querySelectorAll('a').forEach((link) => link.tabIndex = -1);
+    wrapper.append(clone);
+  });
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const mobile = matchMedia('(max-width: 767px)');
+  const pauseButton = section.querySelector('[data-gallery="pause"]');
+  let userPaused = false;
+  let hovered = false;
+  let focused = false;
+  let pressed = false;
+  let visible = false;
   let raf = 0;
-  let last = performance.now();
-
+  let last = 0;
+  let position = 0;
+  const canRun = () => !userPaused && !hovered && !focused && !pressed && visible && !document.hidden && !reduced.matches && !mobile.matches;
+  const stop = () => {
+    cancelAnimationFrame(raf);
+    raf = 0;
+    scroller.classList.remove('is-running');
+  };
   const tick = (now) => {
-    const dt = Math.min(40, now - last);
+    if (!canRun()) { stop(); return; }
+    const distance = wrapper.scrollWidth / 2;
+    position += Math.min(50, now - last) * .025;
+    if (position >= distance) position -= distance;
+    scroller.scrollLeft = position;
     last = now;
-    if (!paused && window.innerWidth > 767 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      scroller.scrollLeft += dt * 0.025;
-      if (scroller.scrollLeft >= scroller.scrollWidth / 2) scroller.scrollLeft -= scroller.scrollWidth / 2;
-    }
     raf = requestAnimationFrame(tick);
   };
-  const pause = () => { paused = true; };
-  const resume = () => { paused = false; };
-  scroller.addEventListener('mouseenter', pause);
-  scroller.addEventListener('mouseleave', resume);
-  scroller.addEventListener('pointerdown', pause);
-  scroller.addEventListener('pointerup', resume);
-  scroller.addEventListener('focusin', pause);
-  scroller.addEventListener('focusout', resume);
-  raf = requestAnimationFrame(tick);
-
-  window.addEventListener('pagehide', () => cancelAnimationFrame(raf), { once: true });
+  const sync = () => {
+    if (!canRun()) { stop(); return; }
+    if (raf) return;
+    position = scroller.scrollLeft;
+    last = performance.now();
+    scroller.classList.add('is-running');
+    raf = requestAnimationFrame(tick);
+  };
+  const setUserPaused = (value) => {
+    userPaused = value;
+    pauseButton.setAttribute('aria-pressed', String(value));
+    pauseButton.textContent = value ? 'Продолжить' : 'Пауза';
+    sync();
+  };
+  const move = (direction, instant = false) => {
+    setUserPaused(true);
+    const width = wrapper.firstElementChild.getBoundingClientRect().width;
+    scroller.scrollBy({ left: direction * width, behavior: instant || reduced.matches ? 'instant' : 'smooth' });
+  };
+  const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); });
+  observer.observe(scroller);
+  scroller.addEventListener('mouseenter', () => { hovered = true; sync(); });
+  scroller.addEventListener('mouseleave', () => { hovered = false; sync(); });
+  scroller.addEventListener('pointerdown', () => { pressed = true; sync(); });
+  window.addEventListener('pointerup', () => { pressed = false; sync(); });
+  window.addEventListener('pointercancel', () => { pressed = false; sync(); });
+  scroller.addEventListener('focusin', () => { focused = true; sync(); });
+  scroller.addEventListener('focusout', (event) => { focused = scroller.contains(event.relatedTarget); sync(); });
+  scroller.addEventListener('wheel', () => setUserPaused(true), { passive: true });
+  scroller.addEventListener('keydown', (event) => {
+    if (event.target !== scroller) return;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      event.preventDefault(); move(event.key === 'ArrowRight' ? 1 : -1, true);
+    }
+  });
+  section.querySelector('[data-gallery="previous"]').addEventListener('click', (event) => move(-1, event.detail === 0));
+  section.querySelector('[data-gallery="next"]').addEventListener('click', (event) => move(1, event.detail === 0));
+  pauseButton.addEventListener('click', () => setUserPaused(!userPaused));
+  document.addEventListener('visibilitychange', sync);
+  reduced.addEventListener('change', sync);
+  mobile.addEventListener('change', sync);
+  window.addEventListener('pagehide', () => { stop(); observer.disconnect(); }, { once: true });
 }
 
 export function bootOriginalRuntime() {

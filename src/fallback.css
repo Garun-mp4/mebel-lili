@@ -138,34 +138,49 @@ button:disabled{cursor:wait;opacity:.55}
 .mid-lead-submit{height:3.35rem;border:0;background:var(--neutral-600);color:var(--neutral-100);display:flex;align-items:center;justify-content:space-between;padding:0 1rem;text-transform:uppercase;font-size:.78rem;cursor:pointer;transition:background-color .2s ease}
 .mid-lead-submit:hover{background:var(--neutral-500)}
 
-/* Project gallery */
+/* Reference publication gallery, using verified business photographs. */
 .lili-projects{overflow:hidden}
-.lili-projects .inner{width:100%}
-.post-gallery__headerline{display:flex;justify-content:space-between;align-items:end;padding:0 1.5rem;margin-bottom:2.5rem;gap:2rem}
+.lili-projects>.inner{width:var(--width-content)}
+.post-gallery__headerline{display:flex;justify-content:space-between;align-items:center;margin-bottom:2.5rem;gap:2rem}
 .post-gallery__headerline .post-gallery__heading{margin:0;padding:0}
-.post-gallery__headerline>p{margin:0;max-width:34ch;font-size:.8rem;line-height:1.35;text-transform:uppercase;color:var(--neutral-400)}
-.lili-projects .swiper{width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-snap-type:x proximity}
-.lili-projects .swiper::-webkit-scrollbar{display:none}
+.gallery-controls{display:flex;gap:.5rem}
+.gallery-controls button{min-width:44px;min-height:44px;padding:.75rem;border:var(--border-style);background:transparent;color:var(--neutral-600);cursor:pointer;font-size:.8rem}
+.gallery-controls button:hover{background:var(--neutral-200);border-style:solid}
+.gallery-controls [data-gallery="pause"]{min-width:7rem}
+.lili-projects .swiper{width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:var(--neutral-400) var(--neutral-200);scroll-snap-type:x proximity;overscroll-behavior-x:contain}
+.lili-projects .swiper.is-running{scroll-snap-type:none}
 .lili-projects .swiper-wrapper{display:flex;width:max-content}
-.lili-projects .post-gallery__item{flex:0 0 25.18rem;scroll-snap-align:start;background:var(--neutral-100)}
+.lili-projects .post-gallery__item{flex:0 0 25.18rem;scroll-snap-align:start;background:var(--neutral-100);aspect-ratio:400/670}
 .lili-projects .thumbnail{background:var(--neutral-200)}
-.lili-projects .read-more{font-size:.75rem;text-transform:uppercase}
+.lili-projects .post-gallery__item header{min-height:56px;align-items:start}
+.lili-projects .item__title{overflow-wrap:anywhere}
+.lili-projects .read-more{font-size:.8rem;text-transform:uppercase}
+.lili-projects .link:focus-visible .excerpt{flex-basis:12rem;padding-block:.5rem}
+.gallery-source{text-align:center;font-size:.8rem;margin:1.5rem 1.25rem 0;color:var(--neutral-500)}
 
-/* Contact */
-.lili-contact .contact__inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem}
-.contact__eyebrow{font-size:.72rem;text-transform:uppercase;color:var(--neutral-400);letter-spacing:.06em}
-.lili-contact .contact__heading{font-size:clamp(2.5rem,5vw,5.5rem);font-weight:400;line-height:.95;letter-spacing:-.04em}
-.contact-address{margin-top:2rem;font-size:.85rem;line-height:1.5;color:var(--neutral-500);text-transform:uppercase}
+/* Reference contact composition, keeping the name/phone/comment form. */
+.lili-contact .contact__inner{display:grid;grid-template-columns:1fr 1.5fr;gap:10rem}
+.lili-contact .contact__heading{font-size:1.8rem;font-weight:400;line-height:1.24;letter-spacing:.01em;margin:0}
+.contact-address{margin-top:1.5rem;font-size:.9rem;line-height:1.5;color:var(--neutral-500);text-transform:uppercase}
 .contact-icon{width:1.5rem;display:inline-block}
-.contact__form select{width:100%;border:0;border-bottom:.5px solid var(--neutral-400);background:transparent;padding:.75rem 0;outline:none;color:var(--neutral-600)}
-.contact__form .lead-form__status{margin-top:.7rem;color:var(--neutral-500)}
-
+.contact__detail-wrapper{flex-wrap:wrap}
+.contact__form-field:focus-within{border-top-style:solid}
+.contact__form-field input::placeholder,.contact__form-field textarea::placeholder{color:var(--neutral-500)}
+.contact__form .lead-form__status{grid-column:1/-1;margin:0;min-height:0;color:var(--neutral-500)}
+.form-honeypot{display:none!important}
+.form-purpose{font-size:.75rem;line-height:1.5;margin:.5rem 0 0;color:var(--neutral-500)}
+.hero-lead-form .form-purpose{color:var(--neutral-100)}
+.contact__form .form-purpose{grid-column:1/-1;margin-top:-2.5rem}
+.lead-form__status.is-error{color:#982c25}
+.hero-lead-form .lead-form__status.is-error{color:#fff}
+.lead-form__status.is-success{color:var(--chromata-600)}
+.hero-lead-form .lead-form__status.is-success{color:#fff}
 /* Footer */
 .cb-site-footer{background:var(--neutral-600);color:var(--neutral-100);margin-top:0;padding:4.5rem 1.5rem 1.25rem}
 .cb-site-footer__top{display:grid;grid-template-columns:1fr 1fr;gap:5rem;padding-bottom:5rem}
 .lili-footer-brand{display:flex;flex-direction:column;align-items:flex-start;max-width:36rem}
 .lili-footer-brand>img{width:145px;filter:brightness(0) invert(1);margin-bottom:2.2rem}
-.cb-site-footer__newsletter-heading{font-size:clamp(1.6rem,3vw,3.4rem);font-weight:400;line-height:1.05;margin:0 0 1rem;text-transform:uppercase}
+.cb-site-footer__newsletter-heading{font-family:var(--font-secondary);font-size:1.8rem;font-weight:400;line-height:1.05;margin:0 0 1rem;text-transform:uppercase}
 .cb-site-footer__newsletter-text{font-size:.75rem;text-transform:uppercase;color:var(--neutral-300)}
 .cb-site-footer__contact{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:1.5rem;align-items:start}
 .footer-mark{width:3rem;height:3rem;border:1px solid var(--neutral-300);border-radius:50%;display:grid;place-items:center;font-size:.75rem}
@@ -222,8 +237,8 @@ button:disabled{cursor:wait;opacity:.55}
   .business-areas__card .business-areas__excerpt{-webkit-line-clamp:unset!important;display:block!important}
   .reviews-band{padding-inline:.75rem}.reviews-grid{grid-template-columns:1fr;margin-top:2rem}.review-card{min-height:210px}
   .lili-mid-lead{padding:4rem 1rem!important}
-  .post-gallery__headerline{display:block;padding:0 1rem}.post-gallery__headerline>p{margin-top:.7rem}.lili-projects .post-gallery__item{flex-basis:82vw;aspect-ratio:360/620}
-  .lili-contact{padding-inline:.35rem!important}.lili-contact .contact__heading{font-size:clamp(2.5rem,13vw,4.4rem)}
+  .post-gallery__headerline{flex-wrap:wrap;padding:0}.gallery-controls{gap:.5rem}.lili-projects .post-gallery__item{flex-basis:82vw;aspect-ratio:360/620}
+  .lili-contact{padding-inline:.35rem!important}.lili-contact .contact__heading{font-size:1.8rem}
   .cb-site-footer{padding:3.5rem 1rem 1rem}.cb-site-footer__top{padding-bottom:3rem}.cb-site-footer__contact{grid-template-columns:auto 1fr;gap:1.2rem}.cb-site-footer__contact-divider{display:none}.cb-site-footer__contact-links{grid-column:2}.cb-site-footer__bar{grid-template-columns:1fr;gap:.8rem}.cb-site-footer__legal{justify-content:flex-start}.cb-site-footer__copyright{order:3}
 }
 
@@ -240,3 +255,7 @@ button:disabled{cursor:wait;opacity:.55}
 .newsletter__subline{color:var(--chromata-600)!important}.mid-lead-form label{color:var(--neutral-500)}.mid-lead-form input::placeholder{color:var(--neutral-500)}.mid-lead-form input,.mid-lead-form select{font-size:1rem;min-height:50px}.mid-lead-submit{min-height:50px}
 @media(max-width:1024px){.reviews-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.review-card{min-height:250px}}
 @media(max-width:767px){.reviews-grid{grid-template-columns:1fr}.review-card{min-height:220px}.business-areas__card-right{height:48vh}.cb-site-header__menu-content{height:100%}}
+
+@media(max-width:1024px){.contact__form .form-purpose{margin-top:0}}
+@media(max-width:767px){.gallery-clone{display:none}.gallery-controls [data-gallery="pause"]{display:none}.post-gallery__headerline{gap:1.25rem}.lili-projects .post-gallery__item{flex-basis:82vw;aspect-ratio:360/620}}
+@media(prefers-reduced-motion:reduce){.gallery-clone{display:none}.gallery-controls [data-gallery="pause"]{display:none}.lili-projects .excerpt{flex-basis:12rem!important;padding-block:.5rem}}

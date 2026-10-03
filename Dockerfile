@@ -9,5 +9,6 @@ ENV NODE_ENV=production
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/public ./public
 COPY --from=build /app/server.mjs ./server.mjs
+COPY --from=build /app/server ./server
 EXPOSE 4173
 CMD ["node", "server.mjs"]
