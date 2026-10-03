@@ -5,9 +5,11 @@ import { PAGE_HTML } from '../src/pageMarkup.js';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const dist = path.join(root, 'dist');
+if (path.resolve(dist) !== path.resolve(root, 'dist') || path.dirname(dist) !== root) throw new Error('Invalid build directory');
 await fs.rm(dist, { recursive: true, force: true });
 await fs.mkdir(dist, { recursive: true });
 await fs.cp(path.join(root, 'public'), dist, { recursive: true });
+await fs.copyFile(path.join(root, 'src', 'fallback.css'), path.join(dist, 'fallback.css'));
 
 let runtime = await fs.readFile(path.join(root, 'src', 'runtime.js'), 'utf8');
 runtime = runtime
