@@ -1,0 +1,12 @@
+.env*
+.git/
+.vercel/
+.playwright-cli/
+.asset-cache/
+node_modules/
+dist/
+docs/
+test/
+gertix-react-clone/
+*.zip
+*.md
