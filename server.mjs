@@ -87,13 +87,8 @@ async function serve(req, res) {
     } catch {}
   }
 
-  const fallback = hasDist ? path.join(distDir, 'index.html') : path.join(__dirname, 'index.html');
-  try {
-    await sendFile(res, fallback);
-  } catch {
-    res.writeHead(404, {'content-type': 'text/plain; charset=utf-8'});
-    res.end('Not found');
-  }
+  res.writeHead(404, {'content-type': 'text/plain; charset=utf-8'});
+  res.end('Not found');
 }
 
 http.createServer((req, res) => {

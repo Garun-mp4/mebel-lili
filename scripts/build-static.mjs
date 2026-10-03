@@ -32,11 +32,13 @@ const index = `<!doctype html>
   <meta name="description" content="Mebel Lili — кухни, шкафы, корпусная и другая мебель на заказ в Самаре. Обсудите проект и подберите решение под ваше пространство." />
   <title>Mebel Lili — мебель на заказ в Самаре</title>
   <link rel="icon" href="/assets/lili-logo.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/jost-variable.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="preload" href="/fonts/ibm-plex-mono-regular.ttf" as="font" type="font/ttf" crossorigin />
   <link rel="stylesheet" href="/base-styles.css" />
   <link rel="stylesheet" href="/${styleName}" />
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">${PAGE_HTML}</div>
   <script defer src="/${appName}"></script>
 </body>
 </html>`;

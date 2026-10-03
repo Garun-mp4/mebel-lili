@@ -33,7 +33,7 @@ button:disabled{cursor:wait;opacity:.55}
 .cb-site-header.is-scrolled,.cb-site-header.is-open{background:var(--neutral-100);color:var(--neutral-600)}
 .cb-site-header__nav{height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 .75rem;gap:1.5rem}
 .cb-site-header__logo-wrap{position:relative;z-index:3;display:flex;align-items:center}
-.lili-logo{display:block;text-decoration:none}
+.lili-logo{display:flex;align-items:center;min-height:44px;text-decoration:none}
 .lili-logo img{width:100px;height:auto;filter:brightness(0) invert(1)}
 .cb-site-header.is-scrolled .lili-logo img,.cb-site-header.is-open .lili-logo img{filter:none}
 .cb-site-header__logo--dark{display:none}
@@ -85,7 +85,7 @@ button:disabled{cursor:wait;opacity:.55}
 .cb-block--statement-text .statement-text__text{max-width:1200px}
 .cb-block--statement-text .statement-text__text p{margin-bottom:0}
 .kpi-gallery__card-content{text-align:center}
-.kpi__name{font-family:var(--font-secondary);font-size:clamp(2.5rem,4vw,4.5rem);font-weight:400;line-height:1;margin:0 0 .8rem}
+.kpi__name{font-family:var(--font-secondary);font-size:2.467rem;font-weight:400;line-height:1;margin:0 0 .8rem}
 .kpi__label{margin:0;font-size:.75rem;text-transform:uppercase;max-width:18ch;line-height:1.25}
 .data-source-note{font-size:.75rem;color:var(--neutral-500);text-transform:uppercase;letter-spacing:.04em;margin:.8rem 0 0;text-align:right}
 
@@ -226,8 +226,8 @@ button:disabled{cursor:wait;opacity:.55}
   .cb-block--hero-frontpage .hero-frontpage__heading{font-size:clamp(2rem,9.7vw,3rem);max-width:100%}
   .cb-block--hero-frontpage .hero-frontpage__intro{font-size:.9rem;line-height:1.4}
   .hero-lead-form{width:100%;margin-top:.45rem}.hero-form-fields{grid-template-columns:1fr;gap:.55rem}.hero-form-fields .lead-submit{grid-column:auto;width:100%}.hero-lead-form .lead-submit .cb-button__title{flex:1}.hero-frontpage__ticker{padding-block:.72rem!important}
-  .cb-block--statement-text{gap:3rem}.cb-block--statement-text header{width:100%!important;margin:0!important;padding:0 .15rem;font-size:1rem!important;line-height:2.45!important}.cb-block--statement-text header strong{padding:.38rem .7rem!important}
-  .kpi-gallery__content{grid-template-columns:1fr 1fr!important}.kpi-gallery__card{padding-block:2.4rem!important}.kpi-gallery__card:nth-child(2){border-top:var(--border-style)!important}.data-source-note{text-align:left;padding-left:.25rem}
+  .cb-block--statement-text{gap:3rem}.cb-block--statement-text header{width:100%!important;margin:0!important;padding:0 .15rem;font-size:1.315rem!important;line-height:2.45!important}.cb-block--statement-text header strong{padding:.38rem .7rem!important}
+  .kpi-gallery__content{grid-template-columns:1fr!important}.kpi-gallery__card{padding-block:2.4rem!important}.kpi-gallery__card:nth-child(2){border-top:var(--border-style)!important}.data-source-note{text-align:left;padding-left:.25rem}
   .lili-process .text-animation__heading{font-size:2.467rem;width:100%!important}.lili-process .text-animation__reveal{margin-top:2rem}.lili-process__visual{height:58vh!important;min-height:360px}
   .business-areas--snap{height:auto!important}
   .business-areas--snap .business-areas__sticky{position:relative;top:auto;height:auto;overflow:visible!important}
@@ -259,3 +259,36 @@ button:disabled{cursor:wait;opacity:.55}
 @media(max-width:1024px){.contact__form .form-purpose{margin-top:0}}
 @media(max-width:767px){.gallery-clone{display:none}.gallery-controls [data-gallery="pause"]{display:none}.post-gallery__headerline{gap:1.25rem}.lili-projects .post-gallery__item{flex-basis:82vw;aspect-ratio:360/620}}
 @media(prefers-reduced-motion:reduce){.gallery-clone{display:none}.gallery-controls [data-gallery="pause"]{display:none}.lili-projects .excerpt{flex-basis:12rem!important;padding-block:.5rem}}
+
+/* Responsive navigation and accessible interaction details. */
+.contact-button{border:0;padding:0}
+.cb-site-footer__contact-link,.cb-site-footer__nav-link,.cb-site-footer__legal-link{min-height:44px;display:inline-flex;align-items:center;font-size:.8rem}
+.cb-site-footer__nav,.cb-site-footer__legal{flex-wrap:wrap}
+.contact__detail{min-height:44px}
+.reviews-source a,.gallery-source a{display:inline-flex;align-items:center;min-height:44px}
+.post-gallery__item{contain:layout paint}
+@media(max-width:1024px){
+ .lili-contact .contact__inner{grid-template-columns:minmax(0,1fr)}
+ .contact__left,.contact__right{min-width:0}
+ .cb-site-header__burger{display:block}
+ .cb-site-header__menu-wrapper{position:fixed;top:var(--header-height);left:0;right:0;height:calc(100dvh - var(--header-height));width:100%;margin:0;background:var(--neutral-100);padding:1.25rem;transform:translateY(-110%);opacity:0;visibility:hidden;transition:transform .25s cubic-bezier(.32,.72,0,1),opacity .2s ease,visibility .2s;z-index:2}
+ .cb-site-header.is-open .cb-site-header__menu-wrapper{transform:translateY(0);opacity:1;visibility:visible}
+ .cb-site-header__menu-content{height:100%}
+ .cb-site-header__menu{height:100%;align-items:stretch;justify-content:center;flex-direction:column;gap:.25rem}
+ .cb-site-header__menu .menu-item a{font-family:var(--font-secondary);font-size:clamp(1.6rem,6vw,3rem);border-radius:0;padding:1rem 0;border-bottom:var(--border-style);color:var(--neutral-600)!important;background:transparent!important}
+ .cb-site-header__menu .menu-item a::before{display:none}
+}
+@media(max-width:767px){
+ .business-areas__btn{max-width:100%}
+ .business-areas__btn .cb-button__title{min-width:0;padding-inline:1rem}
+ .hero-lead-form input,.mid-lead-form input,.mid-lead-form select,.contact__form input,.contact__form textarea{font-size:16px}
+ .review-card{min-width:0}
+}
+@media(prefers-reduced-motion:reduce){
+ .text-animation__sticky,.lili-process__visual{position:static!important}
+ .business-areas--snap{height:auto!important}
+ .business-areas--snap .business-areas__sticky{position:relative;top:auto;height:auto;overflow:visible!important}
+ .business-areas--snap .business-areas__grid{height:auto}
+ .business-areas--snap .business-areas__card{position:relative;inset:auto;transform:none!important;min-height:0;height:auto}
+ .business-areas__card-right{height:500px}
+}

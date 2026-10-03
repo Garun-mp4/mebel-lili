@@ -5,8 +5,9 @@ import './fallback.css';
 
 export default function App() {
   useEffect(() => {
-    const id = requestAnimationFrame(() => bootOriginalRuntime());
-    return () => cancelAnimationFrame(id);
+    let cleanup;
+    const id = requestAnimationFrame(() => { cleanup = bootOriginalRuntime(); });
+    return () => { cancelAnimationFrame(id); cleanup?.(); };
   }, []);
   return <div className="mebel-lili-root" dangerouslySetInnerHTML={{ __html: PAGE_HTML }} />;
 }

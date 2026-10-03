@@ -49,7 +49,7 @@ export const PAGE_HTML = /* html */ String.raw`
 </header>
 <main id="content">
 <section id="top" class="cb-block cb-block--hero-frontpage cb-fullbleed--both lili-hero" style="--margin-lg-top:0px;--margin-lg-bottom:100px;--margin-md-top:0px;--margin-md-bottom:50px;--margin-sm-top:0px;--margin-sm-bottom:20px;">
-<img class="hero-frontpage__video hero-frontpage__image" src="/assets/yandex-kitchen.webp" alt="Кухня на фотографии из карточки Mebel Lili" width="1280" height="960" fetchpriority="high"/>
+<img class="hero-frontpage__video hero-frontpage__image" src="/assets/yandex-kitchen.webp" alt="Кухня на фотографии из карточки Mebel Lili" fetchpriority="high" width="1024" height="768"/>
 <div class="hero-frontpage__content">
 <h1 class="hero-frontpage__heading">МЕБЕЛЬ ДЛЯ<br/>ВАШЕГО ПРОСТРАНСТВА</h1>
 <p class="hero-frontpage__intro">Кухни, шкафы и корпусная мебель на заказ. Обсудим планировку, материалы и то, как вы хотите пользоваться своим пространством.</p>
@@ -289,7 +289,7 @@ export const PAGE_HTML = /* html */ String.raw`
 </div>
 </div>
 <div class="text-animation__container lili-process__visual">
-<img src="/assets/yandex-hallway.webp" alt="Шкаф в прихожей — фото к отзыву ринатты р. в Яндекс" width="768" height="1024" loading="lazy"/>
+<img src="/assets/yandex-hallway.webp" alt="Шкаф в прихожей — фото к отзыву ринатты р. в Яндекс" loading="lazy" width="576" height="1024"/>
 </div>
 </section>
 
@@ -320,7 +320,7 @@ export const PAGE_HTML = /* html */ String.raw`
 </div>
 <div class="business-areas__card-right">
 <div class="business-areas__image-wrap">
-<img src="/assets/yandex-main-kitchen.webp" alt="Кухни Mebel Lili" loading="lazy"/>
+<img src="/assets/yandex-main-kitchen.webp" alt="Кухни Mebel Lili" loading="lazy" width="707" height="1024"/>
 </div>
 </div>
 </article>
@@ -348,7 +348,7 @@ export const PAGE_HTML = /* html */ String.raw`
 </div>
 <div class="business-areas__card-right">
 <div class="business-areas__image-wrap">
-<img src="/assets/yandex-wardrobe.webp" alt="Шкафы Mebel Lili" loading="lazy"/>
+<img src="/assets/yandex-wardrobe.webp" alt="Шкафы Mebel Lili" loading="lazy" width="768" height="1024"/>
 </div>
 </div>
 </article>
@@ -376,7 +376,7 @@ export const PAGE_HTML = /* html */ String.raw`
 </div>
 <div class="business-areas__card-right">
 <div class="business-areas__image-wrap">
-<img src="/assets/yandex-vanity.webp" alt="Корпусная мебель Mebel Lili" loading="lazy"/>
+<img src="/assets/yandex-vanity.webp" alt="Корпусная мебель Mebel Lili" loading="lazy" width="768" height="1024"/>
 </div>
 </div>
 </article>
@@ -404,7 +404,7 @@ export const PAGE_HTML = /* html */ String.raw`
 </div>
 <div class="business-areas__card-right">
 <div class="business-areas__image-wrap">
-<img src="/assets/yandex-storage.webp" alt="Мебель на заказ Mebel Lili" loading="lazy"/>
+<img src="/assets/yandex-storage.webp" alt="Мебель на заказ Mebel Lili" loading="lazy" width="768" height="1024"/>
 </div>
 </div>
 </article>
@@ -432,7 +432,7 @@ export const PAGE_HTML = /* html */ String.raw`
 </div>
 <div class="business-areas__card-right">
 <div class="business-areas__image-wrap">
-<img src="/assets/yandex-main-kitchen.webp" alt="Стеклянные витрины в кухне — главное фото карточки Mebel Lili" loading="lazy"/>
+<img src="/assets/yandex-main-kitchen.webp" alt="Стеклянные витрины в кухне — главное фото карточки Mebel Lili" loading="lazy" width="707" height="1024"/>
 </div>
 </div>
 </article>
@@ -560,7 +560,7 @@ export const PAGE_HTML = /* html */ String.raw`
 <span class="item__label item__date">КУХНЯ</span>
 </header>
 <div class="thumbnail thumbnail--img">
-<img src="/assets/yandex-main-kitchen.webp" alt="Кухня с витринами — фотография Mebel Lili из Яндекс Карт" width="707" height="1024" loading="lazy"/>
+<img src="/assets/yandex-main-kitchen.webp" alt="Кухня с витринами — фотография Mebel Lili из Яндекс Карт" loading="lazy" width="707" height="1024"/>
 </div>
 <div class="excerpt">
 <p class="excerpt__text">Стеклянные фасады и контрастная рабочая зона. Фото из карточки Mebel Lili.</p>
@@ -578,7 +578,7 @@ export const PAGE_HTML = /* html */ String.raw`
 <span class="item__label item__date">ШКАФЫ</span>
 </header>
 <div class="thumbnail thumbnail--img">
-<img src="/assets/yandex-hallway.webp" alt="Шкаф в прихожей — фотография Mebel Lili из Яндекс Карт" width="576" height="1024" loading="lazy"/>
+<img src="/assets/yandex-hallway.webp" alt="Шкаф в прихожей — фотография Mebel Lili из Яндекс Карт" loading="lazy" width="576" height="1024"/>
 </div>
 <div class="excerpt">
 <p class="excerpt__text">Композиция прихожей. Фото к отзыву ринатты р.</p>
@@ -596,7 +596,7 @@ export const PAGE_HTML = /* html */ String.raw`
 <span class="item__label item__date">ШКАФЫ</span>
 </header>
 <div class="thumbnail thumbnail--img">
-<img src="/assets/yandex-wardrobe.webp" alt="Высокий шкаф — фотография Mebel Lili из Яндекс Карт" width="768" height="1024" loading="lazy"/>
+<img src="/assets/yandex-wardrobe.webp" alt="Высокий шкаф — фотография Mebel Lili из Яндекс Карт" loading="lazy" width="768" height="1024"/>
 </div>
 <div class="excerpt">
 <p class="excerpt__text">Лаконичные светлые фасады. Фото к отзыву Сергея Ульянова.</p>
@@ -614,7 +614,7 @@ export const PAGE_HTML = /* html */ String.raw`
 <span class="item__label item__date">ТУМБЫ</span>
 </header>
 <div class="thumbnail thumbnail--img">
-<img src="/assets/yandex-vanity.webp" alt="Тумба под раковину — фотография Mebel Lili из Яндекс Карт" width="768" height="1024" loading="lazy"/>
+<img src="/assets/yandex-vanity.webp" alt="Тумба под раковину — фотография Mebel Lili из Яндекс Карт" loading="lazy" width="768" height="1024"/>
 </div>
 <div class="excerpt">
 <p class="excerpt__text">Подвесная тумба с деревянной столешницей. Фото к отзыву Сергея Ульянова.</p>
@@ -632,7 +632,7 @@ export const PAGE_HTML = /* html */ String.raw`
 <span class="item__label item__date">ШКАФЫ</span>
 </header>
 <div class="thumbnail thumbnail--img">
-<img src="/assets/yandex-storage.webp" alt="Хранение с нишей — фотография Mebel Lili из Яндекс Карт" width="768" height="1024" loading="lazy"/>
+<img src="/assets/yandex-storage.webp" alt="Хранение с нишей — фотография Mebel Lili из Яндекс Карт" loading="lazy" width="768" height="1024"/>
 </div>
 <div class="excerpt">
 <p class="excerpt__text">Шкаф с открытой нишей. Фото к отзыву Сергея Ульянова.</p>
@@ -650,7 +650,7 @@ export const PAGE_HTML = /* html */ String.raw`
 <span class="item__label item__date">ДЕТАЛИ</span>
 </header>
 <div class="thumbnail thumbnail--img">
-<img src="/assets/yandex-vanity-detail.webp" alt="Подвесная тумба — фотография Mebel Lili из Яндекс Карт" width="1024" height="768" loading="lazy"/>
+<img src="/assets/yandex-vanity-detail.webp" alt="Подвесная тумба — фотография Mebel Lili из Яндекс Карт" loading="lazy" width="1024" height="768"/>
 </div>
 <div class="excerpt">
 <p class="excerpt__text">Светлые фасады и фактура столешницы. Фото к отзыву Сергея Ульянова.</p>
@@ -668,7 +668,7 @@ export const PAGE_HTML = /* html */ String.raw`
 <span class="item__label item__date">КУХНЯ</span>
 </header>
 <div class="thumbnail thumbnail--img">
-<img src="/assets/yandex-kitchen.webp" alt="Светлая кухня — фотография Mebel Lili из Яндекс Карт" width="1024" height="768" loading="lazy"/>
+<img src="/assets/yandex-kitchen.webp" alt="Светлая кухня — фотография Mebel Lili из Яндекс Карт" loading="lazy" width="1024" height="768"/>
 </div>
 <div class="excerpt">
 <p class="excerpt__text">Угловая композиция с высокими модулями. Фото к отзыву Сергея Сергеева.</p>
