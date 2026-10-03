@@ -13,6 +13,7 @@ body.menu-open{overflow:hidden}
 img,video{max-width:100%;display:block}
 a{color:inherit;text-underline-offset:.25em}
 p,h1,h2,h3{margin-top:0}
+h2{font-size:1.8rem}
 h1,h2{font-family:var(--font-secondary);font-weight:400;line-height:1.24;letter-spacing:.01em;text-transform:uppercase;text-wrap:balance}
 button,input,textarea,select{font:inherit}
 button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}
@@ -106,26 +107,27 @@ button:disabled{cursor:wait;opacity:.55}
 .business-areas--snap{position:relative;--header-height:var(--header-height)}
 .business-areas--snap .business-areas__sticky{position:sticky;top:var(--header-height);height:calc(100vh - var(--header-height));overflow:hidden!important}
 .business-areas--snap .business-areas__grid{height:100%;position:relative}
-.business-areas--snap .business-areas__card{position:absolute;inset:0;transform:translateY(100%);will-change:transform;z-index:1;min-height:100%;padding-top:2rem;padding-bottom:2rem}
+.business-areas--snap .business-areas__card{position:absolute;inset:0;transform:translateY(100%);will-change:transform;z-index:1;min-height:100%;padding:3rem 1.5rem 5rem}
 .business-areas--snap .business-areas__card:first-child{transform:translateY(0)}
-.business-areas__card .cb-button__title,.business-areas__card .cb-button__arrow{background:transparent;border:1px solid currentColor;color:inherit}
+.business-areas__card .cb-button{color:var(--card-color-inverse)}
+.business-areas__card .cb-button__title,.business-areas__card .cb-button__arrow{background:var(--card-color);border:0;color:var(--card-color-inverse)}
 .business-areas__card .cb-button__title{border-radius:0}
 .business-areas__card .cb-button__arrow{border-radius:0}
-.business-areas__card-right{min-height:0}
-.business-areas__image-wrap{height:100%}
-.business-areas__image-wrap img{min-height:100%;object-fit:cover}
+.business-areas__card-right{min-height:0;height:100%;overflow:hidden}
+.business-areas__image-wrap{height:100%;min-height:0;overflow:hidden}
+.business-areas__image-wrap img{width:100%;height:100%;object-fit:cover}
 
-/* Reviews */
-.reviews-band{padding-inline:1.5rem}
+/* The reference client gallery, adapted to five actual reviews. */
+#content>.reviews-band{width:min(65rem,100%);margin-inline:auto;padding:0}
 .reviews-band .logo-gallery__header{gap:1.5rem}
 .reviews-band .logo-gallery__separator{height:1px;border-top:var(--border-style)}
-.reviews-band__rating{font-size:.75rem;text-transform:uppercase;color:var(--neutral-400);margin:0}
-.reviews-grid{display:grid!important;grid-template-columns:repeat(5,1fr);width:100%;margin-top:3.5rem;border-top:var(--border-style);border-left:var(--border-style)}
-.review-card{min-height:260px;padding:1.2rem;display:flex;flex-direction:column;justify-content:space-between;border-right:var(--border-style);border-bottom:var(--border-style);transition:background .25s ease,transform .25s ease}
+.reviews-band__rating{font-size:.8rem;text-transform:uppercase;color:var(--neutral-500);margin:0}
+.reviews-grid{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));width:100%;margin-top:3rem;border-top:var(--border-style);border-left:var(--border-style)}
+.review-card{min-height:355px;padding:1rem;display:flex;flex-direction:column;justify-content:space-between;gap:2rem;border-right:var(--border-style);border-bottom:var(--border-style);transition:background-color .2s ease}
 .review-card:hover{background:var(--neutral-200)}
-.review-card__quote{font-size:.9rem;line-height:1.42;margin:0}
-.review-card__meta{display:flex;flex-direction:column;gap:.2rem;font-size:.67rem;text-transform:uppercase;color:var(--neutral-400)}
-
+.review-card__quote{font-size:.9rem;line-height:1.5;margin:0;overflow-wrap:anywhere;hyphens:auto}
+.review-card__meta{display:flex;flex-direction:column;gap:.35rem;font-size:.8rem;color:var(--neutral-500)}
+.reviews-source{font-size:.8rem;color:var(--neutral-500);margin:1.5rem 0 0;text-align:center;line-height:1.5}
 /* Mid lead */
 .lili-mid-lead{background:var(--neutral-200)}
 .newsletter__eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--neutral-400);margin:0}
@@ -133,8 +135,8 @@ button:disabled{cursor:wait;opacity:.55}
 .mid-lead-form label{display:flex;flex-direction:column;gap:.35rem;font-size:.66rem;text-transform:uppercase;color:var(--neutral-400)}
 .mid-lead-form input,.mid-lead-form select{width:100%;height:3.35rem;padding:0 1rem;border:.5px dashed var(--neutral-400);border-radius:0;background:transparent;color:var(--neutral-600);outline:none;text-transform:uppercase;font-size:.78rem}
 .mid-lead-form input:focus,.mid-lead-form select:focus{border-style:solid;border-color:var(--neutral-600)}
-.mid-lead-submit{height:3.35rem;border:0;background:var(--neutral-600);color:var(--neutral-100);display:flex;align-items:center;justify-content:space-between;padding:0 1rem;text-transform:uppercase;font-size:.78rem;cursor:pointer;transition:padding .2s ease}
-.mid-lead-submit:hover{padding-right:.75rem}
+.mid-lead-submit{height:3.35rem;border:0;background:var(--neutral-600);color:var(--neutral-100);display:flex;align-items:center;justify-content:space-between;padding:0 1rem;text-transform:uppercase;font-size:.78rem;cursor:pointer;transition:background-color .2s ease}
+.mid-lead-submit:hover{background:var(--neutral-500)}
 
 /* Project gallery */
 .lili-projects{overflow:hidden}
@@ -234,3 +236,7 @@ button:disabled{cursor:wait;opacity:.55}
 
 @media(max-width:1024px){.hero-form-fields{grid-template-columns:1fr 1fr auto}.hero-form-fields .lead-submit{grid-column:auto}.lili-process .text-animation__text-item{opacity:1;transform:none}}
 @media(max-width:767px){#content>.cb-halfbleed--right{grid-column:3}.hero-form-fields{grid-template-columns:1fr}.hero-form-fields .lead-submit{width:100%}.hero-lead-form input,.hero-lead-form .lead-submit,.hero-lead-form .cb-button__title,.hero-lead-form .cb-button__arrow{height:3.5rem;min-height:3.5rem}.lili-process .text-animation__content{min-height:0!important}.lili-process__visual{height:500px!important;min-height:0}}
+
+.newsletter__subline{color:var(--chromata-600)!important}.mid-lead-form label{color:var(--neutral-500)}.mid-lead-form input::placeholder{color:var(--neutral-500)}.mid-lead-form input,.mid-lead-form select{font-size:1rem;min-height:50px}.mid-lead-submit{min-height:50px}
+@media(max-width:1024px){.reviews-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.review-card{min-height:250px}}
+@media(max-width:767px){.reviews-grid{grid-template-columns:1fr}.review-card{min-height:220px}.business-areas__card-right{height:48vh}.cb-site-header__menu-content{height:100%}}

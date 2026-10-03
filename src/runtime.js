@@ -103,6 +103,20 @@ function installBusinessAreas() {
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', updateHeight);
+  section.addEventListener('focusin', (event) => {
+    if (mobile()) return;
+    const index = cards.findIndex((card) => card.contains(event.target));
+    if (index < 0) return;
+    const top = section.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: top - 50 + index * (window.innerHeight - 50), behavior: 'instant' });
+    update();
+  });
+  section.querySelectorAll('[data-project]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const contact = document.querySelector('[data-form-name="contact"]');
+      if (contact) contact.dataset.project = link.dataset.project;
+    });
+  });
   updateHeight();
 }
 
