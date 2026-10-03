@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 56" role="img" aria-labelledby="t">
+  <title id="t">Mebel Lili</title>
+  <g fill="currentColor">
+    <text x="0" y="25" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" letter-spacing="2.6">MEBEL</text>
+    <text x="0" y="51" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="300" letter-spacing="8.4">LILI</text>
+    <rect x="142" y="2" width="1" height="49" opacity=".45"/>
+    <path d="M160 8h42M160 22h27M160 36h42M160 50h19" stroke="currentColor" stroke-width="2" fill="none"/>
+  </g>
+</svg>

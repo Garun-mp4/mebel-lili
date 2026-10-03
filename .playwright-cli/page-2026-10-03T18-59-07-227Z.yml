@@ -1,0 +1,465 @@
+- generic [ref=e3]:
+  - link "Перейти к содержимому" [ref=e4] [cursor=pointer]:
+    - /url: "#content"
+  - banner [ref=e5]:
+    - navigation "Основная навигация" [ref=e6]:
+      - link [ref=e8] [cursor=pointer]:
+        - /url: "#top"
+        - img "Mebel Lili" [ref=e9]
+      - list [ref=e12]:
+        - listitem [ref=e13]:
+          - link "01 ГЛАВНАЯ" [ref=e14] [cursor=pointer]:
+            - /url: "#top"
+        - listitem [ref=e15]:
+          - link "02 МЕБЕЛЬ" [ref=e16] [cursor=pointer]:
+            - /url: "#furniture"
+        - listitem [ref=e17]:
+          - link "03 ПРОЕКТЫ" [ref=e18] [cursor=pointer]:
+            - /url: "#projects"
+        - listitem [ref=e19]:
+          - link "04 ОТЗЫВЫ" [ref=e20] [cursor=pointer]:
+            - /url: "#reviews"
+        - listitem [ref=e21]:
+          - link "05 КОНТАКТЫ" [ref=e22] [cursor=pointer]:
+            - /url: "#request"
+  - main [ref=e23]:
+    - generic [ref=e24]:
+      - img "Кухня Mebel Lili" [ref=e25]
+      - generic [ref=e26]:
+        - paragraph [ref=e27]: MEBEL LILI · САМАРА
+        - heading "МЕБЕЛЬ / ДЛЯ ВАШЕГО ПРОСТРАНСТВА" [level=1] [ref=e28]: МЕБЕЛЬ /ДЛЯ ВАШЕГО ПРОСТРАНСТВА
+        - paragraph [ref=e29]: Кухни, шкафы и корпусная мебель на заказ. Помогаем подобрать решение под планировку, материалы и ваш сценарий жизни.
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - generic [ref=e32]:
+              - generic [ref=e33]: Имя
+              - textbox "Имя" [ref=e34]:
+                - /placeholder: Как к вам обращаться
+            - generic [ref=e35]:
+              - generic [ref=e36]: Телефон
+              - textbox "Телефон" [ref=e37]:
+                - /placeholder: +7 ___ ___-__-__
+            - button "Обсудить проект" [ref=e38] [cursor=pointer]:
+              - generic [aria-hidden] [ref=e40]: →
+          - paragraph [ref=e41]
+      - generic [ref=e43]:
+        - generic [ref=e44]: КУХНИ
+        - generic [ref=e45]: ×
+        - generic [ref=e46]: ШКАФЫ
+        - generic [ref=e47]: →
+        - generic [ref=e48]: КОРПУСНАЯ МЕБЕЛЬ
+        - generic [ref=e49]: →
+        - generic [ref=e50]: МЕБЕЛЬ НА ЗАКАЗ
+        - generic [ref=e51]: "*"
+        - generic [ref=e52]: САМАРА
+        - generic [ref=e53]: ×
+        - generic [ref=e54]: КУХНИ
+        - generic [ref=e55]: ×
+        - generic [ref=e56]: ШКАФЫ
+        - generic [ref=e57]: →
+        - generic [ref=e58]: КОРПУСНАЯ МЕБЕЛЬ
+        - generic [ref=e59]: →
+        - generic [ref=e60]: МЕБЕЛЬ НА ЗАКАЗ
+        - generic [ref=e61]: "*"
+        - generic [ref=e62]: САМАРА
+        - generic [ref=e63]: ×
+        - generic [ref=e64]: КУХНИ
+        - generic [ref=e65]: ×
+        - generic [ref=e66]: ШКАФЫ
+        - generic [ref=e67]: →
+        - generic [ref=e68]: КОРПУСНАЯ МЕБЕЛЬ
+        - generic [ref=e69]: →
+        - generic [ref=e70]: МЕБЕЛЬ НА ЗАКАЗ
+        - generic [ref=e71]: "*"
+        - generic [ref=e72]: САМАРА
+        - generic [ref=e73]: ×
+        - generic [ref=e74]: КУХНИ
+        - generic [ref=e75]: ×
+        - generic [ref=e76]: ШКАФЫ
+        - generic [ref=e77]: →
+        - generic [ref=e78]: КОРПУСНАЯ МЕБЕЛЬ
+        - generic [ref=e79]: →
+        - generic [ref=e80]: МЕБЕЛЬ НА ЗАКАЗ
+        - generic [ref=e81]: "*"
+        - generic [ref=e82]: САМАРА
+        - generic [ref=e83]: ×
+        - generic [ref=e84]: КУХНИ
+        - generic [ref=e85]: ×
+        - generic [ref=e86]: ШКАФЫ
+        - generic [ref=e87]: →
+        - generic [ref=e88]: КОРПУСНАЯ МЕБЕЛЬ
+        - generic [ref=e89]: →
+        - generic [ref=e90]: МЕБЕЛЬ НА ЗАКАЗ
+        - generic [ref=e91]: "*"
+        - generic [ref=e92]: САМАРА
+        - generic [ref=e93]: ×
+        - generic [ref=e94]: КУХНИ
+        - generic [ref=e95]: ×
+        - generic [ref=e96]: ШКАФЫ
+        - generic [ref=e97]: →
+        - generic [ref=e98]: КОРПУСНАЯ МЕБЕЛЬ
+        - generic [ref=e99]: →
+        - generic [ref=e100]: МЕБЕЛЬ НА ЗАКАЗ
+        - generic [ref=e101]: "*"
+        - generic [ref=e102]: САМАРА
+        - generic [ref=e103]: ×
+    - generic [ref=e104]:
+      - separator [ref=e108]
+      - paragraph [ref=e112]:
+        - text: Мы создаём
+        - strong [ref=e113]: мебель
+        - text: вокруг
+        - strong [ref=e114]: вашего пространства
+        - text: ": учитываем размеры, хранение, привычки и визуальный ритм интерьера. Задача — получить"
+        - strong [ref=e115]: цельное решение
+        - text: ", которым удобно пользоваться каждый день."
+      - generic [ref=e116]:
+        - generic [ref=e117]:
+          - generic [ref=e127]:
+            - paragraph [ref=e128]: "4.3"
+            - paragraph [ref=e129]: рейтинг на Яндекс Картах
+          - generic [ref=e135]:
+            - paragraph [ref=e136]: "11"
+            - paragraph [ref=e137]: оценок в карточке
+          - generic [ref=e143]:
+            - paragraph [ref=e144]: "5"
+            - paragraph [ref=e145]: опубликованных отзывов
+          - generic [ref=e151]:
+            - paragraph [ref=e152]: "79"
+            - paragraph [ref=e153]: фотографий в карточке
+        - paragraph [ref=e154]: По данным карточки Mebel Lili на Яндекс Картах.
+    - generic [ref=e155]:
+      - generic [ref=e157]:
+        - paragraph [ref=e158]: ПОДХОД
+        - heading "ОТ ЗАДАЧИ. К ТОЧНОМУ РЕШЕНИЮ." [level=2] [ref=e159]: ОТ ЗАДАЧИ.К ТОЧНОМУ РЕШЕНИЮ.
+        - generic [ref=e160]:
+          - paragraph [ref=e163]: Начинаем с пространства и того, как вы хотите им пользоваться.
+          - paragraph [ref=e166]: Уточняем размеры, обсуждаем материалы и компоновку, чтобы мебель не спорила с интерьером, а становилась его частью.
+          - paragraph [ref=e169]: КУХНИ × ШКАФЫ → КОРПУСНАЯ МЕБЕЛЬ * ИНДИВИДУАЛЬНЫЕ РЕШЕНИЯ
+          - link "Посмотреть направления" [ref=e170] [cursor=pointer]:
+            - /url: "#furniture"
+            - text: →
+      - img "Мебельное решение Mebel Lili" [ref=e173]
+    - generic [ref=e174]:
+      - generic:
+        - generic:
+          - article [ref=e175]:
+            - generic [ref=e176]:
+              - generic [ref=e177]: "01"
+              - generic [ref=e178]:
+                - generic [ref=e179]:
+                  - heading "Кухни" [level=3] [ref=e180]
+                  - list [ref=e181]:
+                    - listitem [ref=e182]: планировка
+                    - listitem [ref=e183]: хранение
+                    - listitem [ref=e184]: рабочая зона
+                - generic [ref=e185]:
+                  - paragraph [ref=e186]: Кухня начинается не с фасада, а с вашего пространства. Продумываем расположение модулей и хранение так, чтобы мебель была удобной в ежедневном использовании.
+                  - link "Обсудить кухни" [ref=e187] [cursor=pointer]:
+                    - /url: "#request"
+                    - generic [aria-hidden] [ref=e189]: →
+            - img "Кухни Mebel Lili" [ref=e192]
+          - article [ref=e193]:
+            - generic [ref=e194]:
+              - generic [ref=e195]: "02"
+              - generic [ref=e196]:
+                - generic [ref=e197]:
+                  - heading "Шкафы" [level=3] [ref=e198]
+                  - list [ref=e199]:
+                    - listitem [ref=e200]: прихожая
+                    - listitem [ref=e201]: спальня
+                    - listitem [ref=e202]: системы хранения
+                - generic [ref=e203]:
+                  - paragraph [ref=e204]: Шкафы и встроенные решения под конкретную нишу, стену или комнату. Поможем подобрать компоновку и материалы под интерьер и задачи хранения.
+                  - link "Обсудить шкафы" [ref=e205] [cursor=pointer]:
+                    - /url: "#request"
+                    - generic [aria-hidden] [ref=e207]: →
+            - img "Шкафы Mebel Lili" [ref=e210]
+          - article [ref=e211]:
+            - generic [ref=e212]:
+              - generic [ref=e213]: "03"
+              - generic [ref=e214]:
+                - generic [ref=e215]:
+                  - heading "Корпусная мебель" [level=3] [ref=e216]
+                  - list [ref=e217]:
+                    - listitem [ref=e218]: тумбы
+                    - listitem [ref=e219]: модули
+                    - listitem [ref=e220]: хранение
+                - generic [ref=e221]:
+                  - paragraph [ref=e222]: Тумбы, модули и другие корпусные решения, которые связывают интерьер в единую систему и используют доступное пространство без случайных элементов.
+                  - link "Обсудить корпусная мебель" [ref=e223] [cursor=pointer]:
+                    - /url: "#request"
+                    - generic [aria-hidden] [ref=e225]: →
+            - img "Корпусная мебель Mebel Lili" [ref=e228]
+          - article [ref=e229]:
+            - generic [ref=e230]:
+              - generic [ref=e231]: "04"
+              - generic [ref=e232]:
+                - generic [ref=e233]:
+                  - heading "Мебель на заказ" [level=3] [ref=e234]
+                  - list [ref=e235]:
+                    - listitem [ref=e236]: индивидуальные размеры
+                    - listitem [ref=e237]: под интерьер
+                    - listitem [ref=e238]: нестандартные задачи
+                - generic [ref=e239]:
+                  - paragraph [ref=e240]: Когда типовое решение не подходит по размерам или задумке, мебель можно адаптировать под конкретную планировку и сценарий использования.
+                  - link "Обсудить мебель на заказ" [ref=e241] [cursor=pointer]:
+                    - /url: "#request"
+                    - generic [aria-hidden] [ref=e243]: →
+            - img "Мебель на заказ Mebel Lili" [ref=e246]
+          - article [ref=e247]:
+            - generic [ref=e248]:
+              - generic [ref=e249]: "05"
+              - generic [ref=e250]:
+                - generic [ref=e251]:
+                  - heading "Стеклянная мебель" [level=3] [ref=e252]
+                  - list [ref=e253]:
+                    - listitem [ref=e254]: витрины
+                    - listitem [ref=e255]: фасады
+                    - listitem [ref=e256]: комбинированные решения
+                - generic [ref=e257]:
+                  - paragraph [ref=e258]: Стекло помогает сделать массивную мебель визуально легче и подходит для витрин, фасадов и комбинированных интерьерных решений.
+                  - link "Обсудить стеклянная мебель" [ref=e259] [cursor=pointer]:
+                    - /url: "#request"
+                    - generic [aria-hidden] [ref=e261]: →
+            - img "Стеклянная мебель Mebel Lili" [ref=e264]
+    - generic [ref=e265]:
+      - generic [ref=e266]:
+        - paragraph [ref=e267]: КЛИЕНТЫ О MEBEL LILI
+        - paragraph [ref=e269]: 4.3 / 5 · Яндекс Карты
+      - generic [ref=e270]:
+        - article [ref=e271]:
+          - paragraph [ref=e272]: «Выполнили всё быстро и качественно. Клиентоориентированный подход, приятное общение. Подробно рассказали про материалы, помогли с выбором.»
+          - generic [ref=e273]:
+            - generic [ref=e274]: ринатта р.
+            - generic [ref=e275]: Яндекс Карты
+        - article [ref=e276]:
+          - paragraph [ref=e277]: «Всё сделали быстро, качественно и аккуратно!»
+          - generic [ref=e278]:
+            - generic [ref=e279]: Сергей Ульянов
+            - generic [ref=e280]: Яндекс Карты
+        - article [ref=e281]:
+          - paragraph [ref=e282]: «Заказал кухню, приехали, замеряли и в указанный срок всё качественно сделали.»
+          - generic [ref=e283]:
+            - generic [ref=e284]: Максим Личардин
+            - generic [ref=e285]: Яндекс Карты
+        - article [ref=e286]:
+          - paragraph [ref=e287]: «Всё отлично.»
+          - generic [ref=e288]:
+            - generic [ref=e289]: Сергей Сергеев
+            - generic [ref=e290]: Яндекс Карты
+        - article [ref=e291]:
+          - paragraph [ref=e292]: «Всё сделали быстро в срок, респект.»
+          - generic [ref=e293]:
+            - generic [ref=e294]: Александр
+            - generic [ref=e295]: Яндекс Карты
+    - generic [ref=e296]:
+      - generic [ref=e297]:
+        - paragraph [ref=e298]: ПЕРВЫЙ ШАГ
+        - heading "НАЧНИТЕ С ПАРЫ ФОТО И РАЗМЕРОВ" [level=2] [ref=e299]
+        - paragraph [ref=e300]: Предварительно обсудим задачу до встречи
+        - paragraph [ref=e302]: Оставьте номер и выберите, что планируете. Мы свяжемся, уточним детали и подскажем, какие исходные данные пригодятся для обсуждения проекта.
+      - generic [ref=e304]:
+        - generic [ref=e305]:
+          - generic [ref=e306]: Ваше имя
+          - textbox "Ваше имя" [ref=e307]:
+            - /placeholder: Имя
+        - generic [ref=e308]:
+          - generic [ref=e309]: Телефон
+          - textbox "Телефон" [ref=e310]:
+            - /placeholder: +7 ___ ___-__-__
+        - generic [ref=e311]:
+          - generic [ref=e312]: Что планируете
+          - combobox "Что планируете" [ref=e313]:
+            - option "Выберите вариант" [disabled] [selected]
+            - option "Кухня"
+            - option "Шкаф"
+            - option "Корпусная мебель"
+            - option "Другая мебель на заказ"
+        - button "Получить консультацию" [ref=e314] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e316]: →
+        - paragraph [ref=e317]
+    - generic [ref=e319]:
+      - generic [ref=e320]:
+        - heading "ПРОЕКТЫ И ДЕТАЛИ" [level=2] [ref=e321]
+        - paragraph [ref=e322]: Несколько направлений и решений, чтобы понять характер работ.
+      - generic [ref=e324]:
+        - article [ref=e325]:
+          - link "Кухня с контрастной столешницей КУХНИ Кухня с контрастной столешницей Комбинация светлых фасадов и тёмной рабочей зоны. обсудить похожее решение" [ref=e326] [cursor=pointer]:
+            - /url: "#request"
+            - generic [ref=e327]:
+              - generic [ref=e328]: Кухня с контрастной столешницей
+              - generic [ref=e329]: КУХНИ
+            - img "Кухня с контрастной столешницей" [ref=e331]
+            - generic:
+              - paragraph [ref=e332]: Комбинация светлых фасадов и тёмной рабочей зоны.
+              - generic [ref=e333]:
+                - generic [ref=e334]: обсудить похожее решение
+                - generic [aria-hidden] [ref=e335]: →
+        - article [ref=e336]:
+          - link "Светлая кухня КУХНИ Светлая кухня Классическая композиция с высокой системой хранения. обсудить похожее решение" [ref=e337] [cursor=pointer]:
+            - /url: "#request"
+            - generic [ref=e338]:
+              - generic [ref=e339]: Светлая кухня
+              - generic [ref=e340]: КУХНИ
+            - img "Светлая кухня" [ref=e342]
+            - generic:
+              - paragraph [ref=e343]: Классическая композиция с высокой системой хранения.
+              - generic [ref=e344]:
+                - generic [ref=e345]: обсудить похожее решение
+                - generic [aria-hidden] [ref=e346]: →
+        - article [ref=e347]:
+          - link "Шкаф для прихожей ШКАФЫ Шкаф для прихожей Высокое хранение и встроенная тумба в единой композиции. обсудить похожее решение" [ref=e348] [cursor=pointer]:
+            - /url: "#request"
+            - generic [ref=e349]:
+              - generic [ref=e350]: Шкаф для прихожей
+              - generic [ref=e351]: ШКАФЫ
+            - img "Шкаф для прихожей" [ref=e353]
+            - generic:
+              - paragraph [ref=e354]: Высокое хранение и встроенная тумба в единой композиции.
+              - generic [ref=e355]:
+                - generic [ref=e356]: обсудить похожее решение
+                - generic [aria-hidden] [ref=e357]: →
+        - article [ref=e358]:
+          - link "Кухонные механизмы ДЕТАЛИ Кухонные механизмы Организация ящиков и доступ к повседневным предметам. обсудить похожее решение" [ref=e359] [cursor=pointer]:
+            - /url: "#request"
+            - generic [ref=e360]:
+              - generic [ref=e361]: Кухонные механизмы
+              - generic [ref=e362]: ДЕТАЛИ
+            - img "Кухонные механизмы" [ref=e364]
+            - generic:
+              - paragraph [ref=e365]: Организация ящиков и доступ к повседневным предметам.
+              - generic [ref=e366]:
+                - generic [ref=e367]: обсудить похожее решение
+                - generic [aria-hidden] [ref=e368]: →
+        - article [ref=e369]:
+          - link "Тумба с каменной чашей КОРПУСНАЯ МЕБЕЛЬ Тумба с каменной чашей Фактурный акцент и лаконичная подвесная конструкция. обсудить похожее решение" [ref=e370] [cursor=pointer]:
+            - /url: "#request"
+            - generic [ref=e371]:
+              - generic [ref=e372]: Тумба с каменной чашей
+              - generic [ref=e373]: КОРПУСНАЯ МЕБЕЛЬ
+            - img "Тумба с каменной чашей" [ref=e375]
+            - generic:
+              - paragraph [ref=e376]: Фактурный акцент и лаконичная подвесная конструкция.
+              - generic [ref=e377]:
+                - generic [ref=e378]: обсудить похожее решение
+                - generic [aria-hidden] [ref=e379]: →
+        - article [ref=e380]:
+          - link "Кухня с контрастной столешницей КУХНИ Кухня с контрастной столешницей Комбинация светлых фасадов и тёмной рабочей зоны. обсудить похожее решение" [ref=e381] [cursor=pointer]:
+            - /url: "#request"
+            - generic [ref=e382]:
+              - generic [ref=e383]: Кухня с контрастной столешницей
+              - generic [ref=e384]: КУХНИ
+            - img "Кухня с контрастной столешницей" [ref=e386]
+            - generic:
+              - paragraph [ref=e387]: Комбинация светлых фасадов и тёмной рабочей зоны.
+              - generic [ref=e388]:
+                - generic [ref=e389]: обсудить похожее решение
+                - generic [aria-hidden] [ref=e390]: →
+        - article [ref=e391]:
+          - link "Светлая кухня КУХНИ Светлая кухня Классическая композиция с высокой системой хранения. обсудить похожее решение" [ref=e392] [cursor=pointer]:
+            - /url: "#request"
+            - generic [ref=e393]:
+              - generic [ref=e394]: Светлая кухня
+              - generic [ref=e395]: КУХНИ
+            - img "Светлая кухня" [ref=e397]
+            - generic:
+              - paragraph [ref=e398]: Классическая композиция с высокой системой хранения.
+              - generic [ref=e399]:
+                - generic [ref=e400]: обсудить похожее решение
+                - generic [aria-hidden] [ref=e401]: →
+        - article [ref=e402]:
+          - link "Шкаф для прихожей ШКАФЫ Шкаф для прихожей Высокое хранение и встроенная тумба в единой композиции. обсудить похожее решение" [ref=e403] [cursor=pointer]:
+            - /url: "#request"
+            - generic [ref=e404]:
+              - generic [ref=e405]: Шкаф для прихожей
+              - generic [ref=e406]: ШКАФЫ
+            - img "Шкаф для прихожей" [ref=e408]
+            - generic:
+              - paragraph [ref=e409]: Высокое хранение и встроенная тумба в единой композиции.
+              - generic [ref=e410]:
+                - generic [ref=e411]: обсудить похожее решение
+                - generic [aria-hidden] [ref=e412]: →
+        - article [ref=e413]:
+          - link "Кухонные механизмы ДЕТАЛИ Кухонные механизмы Организация ящиков и доступ к повседневным предметам. обсудить похожее решение" [ref=e414] [cursor=pointer]:
+            - /url: "#request"
+            - generic [ref=e415]:
+              - generic [ref=e416]: Кухонные механизмы
+              - generic [ref=e417]: ДЕТАЛИ
+            - img "Кухонные механизмы" [ref=e419]
+            - generic:
+              - paragraph [ref=e420]: Организация ящиков и доступ к повседневным предметам.
+              - generic [ref=e421]:
+                - generic [ref=e422]: обсудить похожее решение
+                - generic [aria-hidden] [ref=e423]: →
+        - article [ref=e424]:
+          - link "Тумба с каменной чашей КОРПУСНАЯ МЕБЕЛЬ Тумба с каменной чашей Фактурный акцент и лаконичная подвесная конструкция. обсудить похожее решение" [ref=e425] [cursor=pointer]:
+            - /url: "#request"
+            - generic [ref=e426]:
+              - generic [ref=e427]: Тумба с каменной чашей
+              - generic [ref=e428]: КОРПУСНАЯ МЕБЕЛЬ
+            - img "Тумба с каменной чашей" [ref=e430]
+            - generic:
+              - paragraph [ref=e431]: Фактурный акцент и лаконичная подвесная конструкция.
+              - generic [ref=e432]:
+                - generic [ref=e433]: обсудить похожее решение
+                - generic [aria-hidden] [ref=e434]: →
+    - generic [ref=e436]:
+      - generic [ref=e437]:
+        - paragraph [ref=e438]: MEBEL LILI · САМАРА
+        - heading "ОБСУДИМ ВАШ ПРОЕКТ" [level=2] [ref=e439]
+        - paragraph [ref=e441]: Расскажите, какая мебель нужна и для какого помещения. Можно начать с идеи, фотографии или примерных размеров.
+        - generic [ref=e442]:
+          - paragraph [ref=e443]: "Контакты:"
+          - generic [ref=e444]:
+            - link "↗ +7 (917) 037-25-63" [ref=e445] [cursor=pointer]:
+              - /url: tel:+79170372563
+              - generic [ref=e446]: ↗
+              - generic [ref=e447]: +7 (917) 037-25-63
+            - link "⌖ Открыть на Яндекс Картах" [ref=e448] [cursor=pointer]:
+              - /url: https://yandex.com/maps/org/mebel_lili/1806470657
+              - generic [ref=e449]: ⌖
+              - generic [ref=e450]: Открыть на Яндекс Картах
+          - generic [ref=e451]: Самара, посёлок Кряж,Камышинская улица, 28
+      - generic [ref=e453]:
+        - generic [ref=e454]:
+          - generic [ref=e455]: Имя
+          - textbox "Имя" [ref=e456]:
+            - /placeholder: Как к вам обращаться
+        - generic [ref=e457]:
+          - generic [ref=e458]: Телефон
+          - textbox "Телефон" [ref=e459]:
+            - /placeholder: +7 ___ ___-__-__
+        - generic [ref=e460]:
+          - generic [ref=e461]: Комментарий
+          - textbox "Комментарий" [ref=e462]:
+            - /placeholder: Коротко опишите задачу
+        - button "Отправить заявку" [ref=e463] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e465]: →
+        - paragraph [ref=e466]
+  - contentinfo [ref=e467]:
+    - generic [ref=e468]:
+      - generic [ref=e469]:
+        - img "Mebel Lili" [ref=e470]
+        - paragraph [ref=e471]: МЕБЕЛЬ, СОБРАННАЯ ВОКРУГ ВАШЕГО ПРОСТРАНСТВА.
+        - paragraph [ref=e472]: Кухни · шкафы · корпусная мебель · мебель на заказ
+      - generic [ref=e473]:
+        - generic [ref=e474]: ML
+        - generic [ref=e475]: Mebel LiliСамара, посёлок КряжКамышинская улица, 28
+        - generic [ref=e477]:
+          - link "+7 (917) 037-25-63" [ref=e478] [cursor=pointer]:
+            - /url: tel:+79170372563
+          - link "Яндекс Карты ↗" [ref=e479] [cursor=pointer]:
+            - /url: https://yandex.com/maps/org/mebel_lili/1806470657
+    - generic [ref=e480]:
+      - navigation "Навигация в подвале" [ref=e481]:
+        - link "02 МЕБЕЛЬ" [ref=e482] [cursor=pointer]:
+          - /url: "#furniture"
+        - link "03 ПРОЕКТЫ" [ref=e483] [cursor=pointer]:
+          - /url: "#projects"
+      - paragraph [ref=e484]: © MEBEL LILI 2026
+      - navigation "Дополнительные ссылки" [ref=e485]:
+        - link "ОТЗЫВЫ" [ref=e486] [cursor=pointer]:
+          - /url: "#reviews"
+        - link "КОНТАКТЫ" [ref=e487] [cursor=pointer]:
+          - /url: "#request"

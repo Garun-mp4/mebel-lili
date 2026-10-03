@@ -1,0 +1,38 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { PAGE_HTML } from '../src/pageMarkup.js';
+
+const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+const dist = path.join(root, 'dist');
+await fs.rm(dist, { recursive: true, force: true });
+await fs.mkdir(dist, { recursive: true });
+await fs.cp(path.join(root, 'public'), dist, { recursive: true });
+
+let runtime = await fs.readFile(path.join(root, 'src', 'runtime.js'), 'utf8');
+runtime = runtime
+  .replace(/export\s+const\s+BODY_CLASS/g, 'const BODY_CLASS')
+  .replace(/export\s+function\s+bootOriginalRuntime/g, 'function bootOriginalRuntime');
+
+const app = `${runtime}\n\ndocument.getElementById('root').innerHTML = ${JSON.stringify(PAGE_HTML)};\nrequestAnimationFrame(() => bootOriginalRuntime());\n`;
+await fs.writeFile(path.join(dist, 'app.js'), app, 'utf8');
+
+const index = `<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4f4f1" />
+  <meta name="description" content="Mebel Lili — кухни, шкафы, корпусная и другая мебель на заказ в Самаре. Обсудите проект и подберите решение под ваше пространство." />
+  <title>Mebel Lili — мебель на заказ в Самаре</title>
+  <link rel="icon" href="/assets/lili-logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/base-styles.css" />
+  <link rel="stylesheet" href="/fallback.css" />
+</head>
+<body>
+  <div id="root"></div>
+  <script defer src="/app.js"></script>
+</body>
+</html>`;
+await fs.writeFile(path.join(dist, 'index.html'), index, 'utf8');
+console.log('Static production build created in dist/');
