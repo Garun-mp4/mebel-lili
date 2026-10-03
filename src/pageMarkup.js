@@ -49,7 +49,10 @@ export const PAGE_HTML = /* html */ String.raw`
 </header>
 <main id="content">
 <section id="top" class="cb-block cb-block--hero-frontpage cb-fullbleed--both lili-hero" style="--margin-lg-top:0px;--margin-lg-bottom:100px;--margin-md-top:0px;--margin-md-bottom:50px;--margin-sm-top:0px;--margin-sm-bottom:20px;">
+<picture>
+<source media="(max-width: 767px)" srcset="/assets/kitchen-modern-mobile.webp" width="1086" height="1448"/>
 <img class="hero-frontpage__video hero-frontpage__image" src="/assets/kitchen-modern.webp" alt="Интерьер угловой кухни в светлых тонах" fetchpriority="high" width="1672" height="941"/>
+</picture>
 <div class="hero-frontpage__content">
 <h1 class="hero-frontpage__heading">МЕБЕЛЬ ДЛЯ<br/>ВАШЕГО ПРОСТРАНСТВА</h1>
 <p class="hero-frontpage__intro">Кухни, шкафы и корпусная мебель на заказ. Обсудим планировку, материалы и то, как вы хотите пользоваться своим пространством.</p>

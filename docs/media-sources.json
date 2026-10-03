@@ -177,7 +177,9 @@
       1448
     ],
     "sha256": "9e71ac2a4aa28d201bed82fa398dcebabb58d52a48633541ae0a9b11420415af",
-    "publishedAsCompletedWork": false
+    "publishedAsCompletedWork": false,
+    "usage": "hero-mobile",
+    "selectedByUser": true
   },
   {
     "file": "public/assets/daybed.webp",
@@ -227,6 +229,13 @@
     "meanPixelDifference": 0.27,
     "classification": "illustration",
     "usage": "hero",
+    "selectedByUser": true
+  },
+  {
+    "file": "public/assets/kitchen-modern-mobile.webp",
+    "matchesArchiveFile": "Modern L-Shaped Kitchen Interior-2.png",
+    "classification": "illustration",
+    "usage": "hero-mobile",
     "selectedByUser": true
   },
   {
