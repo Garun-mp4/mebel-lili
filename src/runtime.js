@@ -117,9 +117,16 @@ function installTextReveal() {
   const update = () => {
     const rect = section.getBoundingClientRect();
     const vh = window.innerHeight || 1;
-    const progress = Math.min(1, Math.max(0, (vh * .8 - rect.top) / Math.max(vh, rect.height * .65)));
+    const content = section.querySelector('.text-animation__content');
+    const sticky = section.querySelector('.text-animation__sticky');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const pinned = window.innerWidth > 1024 && !reduced;
+    content.style.minHeight = pinned ? `${vh * (1.5 + items.length * .4)}px` : '0px';
+    const top = parseFloat(getComputedStyle(sticky).top) || 120;
+    const distance = Math.max(1, content.offsetHeight - sticky.offsetHeight);
+    const progress = pinned ? Math.min(1, Math.max(0, (top - rect.top) / distance)) : 1;
     if (heading) heading.style.setProperty('--fill', `${Math.round(progress * 100)}%`);
-    items.forEach((item, i) => item.classList.toggle('is-visible', progress >= (i + .25) / (items.length + .25)));
+    items.forEach((item, i) => item.classList.toggle('is-visible', progress >= i / items.length));
   };
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update);

@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { PAGE_HTML } from '../src/pageMarkup.js';
 
@@ -9,7 +10,9 @@ if (path.resolve(dist) !== path.resolve(root, 'dist') || path.dirname(dist) !== 
 await fs.rm(dist, { recursive: true, force: true });
 await fs.mkdir(dist, { recursive: true });
 await fs.cp(path.join(root, 'public'), dist, { recursive: true });
-await fs.copyFile(path.join(root, 'src', 'fallback.css'), path.join(dist, 'fallback.css'));
+const customStyles = await fs.readFile(path.join(root, 'src', 'fallback.css'), 'utf8');
+const styleName = `fallback.${createHash('sha256').update(customStyles).digest('hex').slice(0, 12)}.css`;
+await fs.writeFile(path.join(dist, styleName), customStyles);
 
 let runtime = await fs.readFile(path.join(root, 'src', 'runtime.js'), 'utf8');
 runtime = runtime
@@ -17,7 +20,8 @@ runtime = runtime
   .replace(/export\s+function\s+bootOriginalRuntime/g, 'function bootOriginalRuntime');
 
 const app = `${runtime}\n\ndocument.getElementById('root').innerHTML = ${JSON.stringify(PAGE_HTML)};\nrequestAnimationFrame(() => bootOriginalRuntime());\n`;
-await fs.writeFile(path.join(dist, 'app.js'), app, 'utf8');
+const appName = `app.${createHash('sha256').update(app).digest('hex').slice(0, 12)}.js`;
+await fs.writeFile(path.join(dist, appName), app, 'utf8');
 
 const index = `<!doctype html>
 <html lang="ru">
@@ -29,11 +33,11 @@ const index = `<!doctype html>
   <title>Mebel Lili — мебель на заказ в Самаре</title>
   <link rel="icon" href="/assets/lili-logo.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/base-styles.css" />
-  <link rel="stylesheet" href="/fallback.css" />
+  <link rel="stylesheet" href="/${styleName}" />
 </head>
 <body>
   <div id="root"></div>
-  <script defer src="/app.js"></script>
+  <script defer src="/${appName}"></script>
 </body>
 </html>`;
 await fs.writeFile(path.join(dist, 'index.html'), index, 'utf8');

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "01_main_gallery_photo",
+    "file": "/assets/yandex-main-kitchen.webp",
+    "width": 707,
+    "height": 1024,
+    "sourceManifest": "04_photo_manifest.md",
+    "classification": "yandex_business_photo"
+  },
+  {
+    "id": "02_review_rinatta_photo_1",
+    "file": "/assets/yandex-hallway.webp",
+    "width": 576,
+    "height": 1024,
+    "sourceManifest": "04_photo_manifest.md",
+    "classification": "yandex_business_photo"
+  },
+  {
+    "id": "03_review_sergey_ulyanov_photo_1",
+    "file": "/assets/yandex-wardrobe.webp",
+    "width": 768,
+    "height": 1024,
+    "sourceManifest": "04_photo_manifest.md",
+    "classification": "yandex_business_photo"
+  },
+  {
+    "id": "04_review_sergey_ulyanov_photo_2",
+    "file": "/assets/yandex-vanity.webp",
+    "width": 768,
+    "height": 1024,
+    "sourceManifest": "04_photo_manifest.md",
+    "classification": "yandex_business_photo"
+  },
+  {
+    "id": "05_review_sergey_ulyanov_photo_3",
+    "file": "/assets/yandex-storage.webp",
+    "width": 768,
+    "height": 1024,
+    "sourceManifest": "04_photo_manifest.md",
+    "classification": "yandex_business_photo"
+  },
+  {
+    "id": "06_review_sergey_ulyanov_photo_4",
+    "file": "/assets/yandex-vanity-detail.webp",
+    "width": 1024,
+    "height": 768,
+    "sourceManifest": "04_photo_manifest.md",
+    "classification": "yandex_business_photo"
+  },
+  {
+    "id": "07_review_sergey_sergeev_photo_1",
+    "file": "/assets/yandex-kitchen.webp",
+    "width": 1024,
+    "height": 768,
+    "sourceManifest": "04_photo_manifest.md",
+    "classification": "yandex_business_photo"
+  }
+]
