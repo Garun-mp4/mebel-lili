@@ -72,7 +72,7 @@ function installBusinessAreas() {
       cards.forEach((card) => { card.style.transform = ''; card.style.zIndex = ''; });
       return;
     }
-    const viewport = Math.max(520, window.innerHeight - 76);
+    const viewport = Math.max(520, window.innerHeight - (parseFloat(getComputedStyle(section).getPropertyValue("--header-height")) || 50));
     section.style.height = `${viewport * cards.length}px`;
     update();
   };
@@ -80,8 +80,8 @@ function installBusinessAreas() {
   const update = () => {
     if (mobile()) return;
     const rect = section.getBoundingClientRect();
-    const total = Math.max(1, section.offsetHeight - window.innerHeight + 76);
-    const scrolled = Math.min(total, Math.max(0, -rect.top + 76));
+    const total = Math.max(1, section.offsetHeight - window.innerHeight + (parseFloat(getComputedStyle(section).getPropertyValue("--header-height")) || 50));
+    const scrolled = Math.min(total, Math.max(0, -rect.top + (parseFloat(getComputedStyle(section).getPropertyValue("--header-height")) || 50)));
     const progress = scrolled / total;
     const step = progress * (cards.length - 1);
     cards.forEach((card, i) => {

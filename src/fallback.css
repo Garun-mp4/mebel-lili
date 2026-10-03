@@ -104,7 +104,7 @@ button:disabled{cursor:wait;opacity:.55}
 .lili-process .cb-button__title::after{content:'→';position:absolute;right:1rem}
 .lili-process .cb-button{position:relative}
 /* Business areas sticky cards */
-.business-areas--snap{position:relative;--header-height:var(--header-height)}
+.business-areas--snap{position:relative}
 .business-areas--snap .business-areas__sticky{position:sticky;top:var(--header-height);height:calc(100vh - var(--header-height));overflow:hidden!important}
 .business-areas--snap .business-areas__grid{height:100%;position:relative}
 .business-areas--snap .business-areas__card{position:absolute;inset:0;transform:translateY(100%);will-change:transform;z-index:1;min-height:100%;padding:3rem 1.5rem 5rem}
