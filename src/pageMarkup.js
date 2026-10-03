@@ -1,3 +1,5 @@
+import { consentMarkup } from './legal-documents.mjs';
+
 export const PAGE_HTML = /* html */ String.raw`
 
 <div id="page">
@@ -70,7 +72,7 @@ export const PAGE_HTML = /* html */ String.raw`
 <span>Телефон</span>
 <input name="phone" type="tel" maxlength="32" inputmode="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required/>
 </label>
-<button class="cb-button cb-btn--primary lead-submit" type="submit">
+<button class="cb-button cb-btn--primary lead-submit" type="submit" disabled>
 <span class="cb-button__title">Обсудить проект</span>
 <span aria-hidden="true" class="cb-button__arrow">
 </span>
@@ -78,7 +80,7 @@ export const PAGE_HTML = /* html */ String.raw`
 </div>
 <p class="lead-form__status" aria-live="polite" role="status">
 </p>
-<p class="form-purpose">Оставляя заявку, вы просите связаться с вами по указанному телефону.</p>
+${consentMarkup('hero')}
 </form>
 </div>
 <div aria-hidden="true" class="hero-frontpage__ticker" style="--ticker-duration:120s">
@@ -524,13 +526,13 @@ export const PAGE_HTML = /* html */ String.raw`
 <option>Стеклянная мебель</option>
 </select>
 </label>
-<button class="mid-lead-submit" type="submit">
+<button class="mid-lead-submit" type="submit" disabled>
 <span>Получить консультацию</span>
 <span aria-hidden="true">→</span>
 </button>
 <p class="lead-form__status" aria-live="polite" role="status">
 </p>
-<p class="form-purpose">Оставляя заявку, вы просите связаться с вами по указанному телефону.</p>
+${consentMarkup('mid')}
 </form>
 </div>
 </section>
@@ -731,14 +733,14 @@ export const PAGE_HTML = /* html */ String.raw`
 <textarea id="contact-message" name="contact_message" placeholder="Коротко опишите задачу" rows="3" maxlength="1500">
 </textarea>
 </div>
-<button class="contact-button" type="submit">
+<button class="contact-button" type="submit" disabled>
 <span class="cb-button__title">Отправить заявку</span>
 <span aria-hidden="true" class="cb-button__arrow">
 </span>
 </button>
 <p aria-live="polite" class="contact__form-status lead-form__status" role="status">
 </p>
-<p class="form-purpose">Оставляя заявку, вы просите связаться с вами по указанному телефону.</p>
+${consentMarkup('contact')}
 </form>
 </div>
 </div>
@@ -770,6 +772,9 @@ export const PAGE_HTML = /* html */ String.raw`
 </nav>
 <p class="cb-site-footer__copyright">© MEBEL LILI 2026</p>
 <nav aria-label="Дополнительные ссылки" class="cb-site-footer__legal">
+<a class="cb-site-footer__legal-link" href="/privacy.html">КОНФИДЕНЦИАЛЬНОСТЬ</a>
+<a class="cb-site-footer__legal-link" href="/consent.html">СОГЛАСИЕ</a>
+<a class="cb-site-footer__legal-link" href="/cookies.html">COOKIES</a>
 <a class="cb-site-footer__legal-link" href="#reviews">ОТЗЫВЫ</a>
 <a class="cb-site-footer__legal-link" href="#request">КОНТАКТЫ</a>
 </nav>

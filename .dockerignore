@@ -2,3 +2,7 @@ node_modules
 .asset-cache
 .git
 *.zip
+.env
+.env.*
+!.env.example
+.playwright-cli

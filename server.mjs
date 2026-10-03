@@ -4,12 +4,20 @@ import fsp from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Readable } from 'node:stream';
-import { handleLeadRequest } from './server/leads.mjs';
+import { handleLeadRequest, collectionReady } from './server/leads.mjs';
+import { purgeExpired } from './server/lead-store.mjs';
+import { operator, operatorReady } from './legal/operator.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(__dirname, 'dist');
 const publicDir = path.join(__dirname, 'public');
 const port = Number(process.env.PORT || 4173);
+
+if (collectionReady()) {
+  const purge = () => purgeExpired(process.env).catch(() => console.error('Expired lead cleanup failed; check private storage permissions.'));
+  await purge();
+  setInterval(purge, 60 * 60 * 1000).unref();
+}
 
 const mime = {
   '.html': 'text/html; charset=utf-8',
@@ -51,8 +59,11 @@ async function serve(req, res) {
   if (url.pathname === '/api/leads') {
     const headers = new Headers();
     for (const [key, value] of Object.entries(req.headers)) if (value) headers.set(key, Array.isArray(value) ? value.join(', ') : value);
-    headers.set('x-forwarded-for', req.socket.remoteAddress || 'local');
-    const request = new Request(url, {
+    // TRUST_PROXY is safe only behind a firewall and a proxy that replaces this header.
+    const client = process.env.TRUST_PROXY === 'true' ? req.headers['x-forwarded-for']?.split(',')[0].trim() : undefined;
+    headers.set('x-forwarded-for', client || req.socket.remoteAddress || 'local');
+    const apiUrl = operatorReady() ? new URL(url.pathname, operator.site) : url;
+    const request = new Request(apiUrl, {
       method: req.method, headers,
       ...(!['GET', 'HEAD'].includes(req.method) ? { body: Readable.toWeb(req), duplex: 'half' } : {})
     });

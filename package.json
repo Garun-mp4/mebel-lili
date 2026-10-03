@@ -5,9 +5,11 @@
   "type": "module",
   "engines": { "node": "22.x" },
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "node scripts/build-legal.mjs && vite --host 0.0.0.0",
     "build": "node scripts/build-static.mjs",
-    "build:vite": "vite build",
+    "build:vite": "node scripts/build-legal.mjs && vite build",
+    "build:legal": "node scripts/build-legal.mjs",
+    "leads:admin": "node --env-file=.env.local scripts/leads-admin.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "start": "node server.mjs",
     "test": "node --test"

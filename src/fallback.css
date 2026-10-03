@@ -168,9 +168,15 @@ button:disabled{cursor:wait;opacity:.55}
 .contact__form-field input::placeholder,.contact__form-field textarea::placeholder{color:var(--neutral-500)}
 .contact__form .lead-form__status{grid-column:1/-1;margin:0;min-height:0;color:var(--neutral-500)}
 .form-honeypot{display:none!important}
-.form-purpose{font-size:.75rem;line-height:1.5;margin:.5rem 0 0;color:var(--neutral-500)}
-.hero-lead-form .form-purpose{color:var(--neutral-100)}
-.contact__form .form-purpose{grid-column:1/-1;margin-top:-2.5rem}
+.lead-legal{grid-column:1/-1;font-size:.8rem;line-height:1.5;color:var(--neutral-500);text-transform:none;min-width:0}
+.lead-form .lead-consent{display:grid;grid-template-columns:22px minmax(0,1fr);align-items:start;gap:12px;min-height:44px;padding-block:8px;font-size:.8rem;line-height:1.5;text-transform:none;color:inherit;cursor:pointer}
+.lead-form .lead-consent input{appearance:auto;display:block;width:20px;height:20px;min-height:20px;min-width:20px;padding:0;margin:2px 0 0;border-radius:0;accent-color:var(--neutral-600);cursor:pointer}
+.lead-legal a{text-decoration:underline;text-underline-offset:3px;color:inherit}
+.lead-legal a:hover{text-decoration-thickness:2px}
+.lead-policy,.legal-draft-notice{margin:.45rem 0 0;font-size:inherit;line-height:1.5}
+.hero-lead-form .lead-legal{color:var(--neutral-100)}
+.hero-lead-form .lead-consent input{accent-color:var(--neutral-100)}
+.contact__form .lead-legal{margin-top:-2rem}
 .lead-form__status.is-error{color:#982c25}
 .hero-lead-form .lead-form__status.is-error{color:#fff}
 .lead-form__status.is-success{color:var(--chromata-600)}
@@ -257,7 +263,7 @@ button:disabled{cursor:wait;opacity:.55}
 @media(max-width:1024px){.reviews-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.review-card{min-height:250px}}
 @media(max-width:767px){.reviews-grid{grid-template-columns:1fr}.review-card{min-height:220px}.business-areas__card-right{height:48vh}.cb-site-header__menu-content{height:100%}}
 
-@media(max-width:1024px){.contact__form .form-purpose{margin-top:0}}
+@media(max-width:1024px){.contact__form .lead-legal{margin-top:0}}
 @media(max-width:767px){.gallery-clone{display:none}.gallery-controls [data-gallery="pause"]{display:none}.post-gallery__headerline{gap:1.25rem}.lili-projects .post-gallery__item{flex-basis:82vw;aspect-ratio:360/620}}
 @media(prefers-reduced-motion:reduce){.gallery-clone{display:none}.gallery-controls [data-gallery="pause"]{display:none}.lili-projects .excerpt{flex-basis:12rem!important;padding-block:.5rem}}
 

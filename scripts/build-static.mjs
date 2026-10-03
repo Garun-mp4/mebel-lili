@@ -3,12 +3,14 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { PAGE_HTML } from '../src/pageMarkup.js';
+import { buildLegal } from './build-legal.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const dist = path.join(root, 'dist');
 if (path.resolve(dist) !== path.resolve(root, 'dist') || path.dirname(dist) !== root) throw new Error('Invalid build directory');
 await fs.rm(dist, { recursive: true, force: true });
 await fs.mkdir(dist, { recursive: true });
+await buildLegal();
 await fs.cp(path.join(root, 'public'), dist, { recursive: true });
 const customStyles = await fs.readFile(path.join(root, 'src', 'fallback.css'), 'utf8');
 const styleName = `fallback.${createHash('sha256').update(customStyles).digest('hex').slice(0, 12)}.css`;

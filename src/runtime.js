@@ -90,6 +90,8 @@ function installForms() {
   document.querySelectorAll('.lead-form').forEach((form) => {
     if (form.dataset.localBound) return;
     form.dataset.localBound = '1';
+    // Native submission remains disabled until the guarded JSON flow is installed.
+    form.querySelector('button[type="submit"]').disabled = false;
     let submitting = false;
     const phone = form.querySelector('input[type="tel"]');
     listen(phone, 'input', () => phone.setCustomValidity(''));
@@ -101,6 +103,11 @@ function installForms() {
       if (!form.reportValidity()) return;
       const status = form.querySelector('.lead-form__status');
       const button = form.querySelector('button[type="submit"]');
+      if (form.querySelector('.lead-legal').dataset.collectionAvailable !== 'true') {
+        status.classList.add('is-error');
+        status.textContent = 'Онлайн-заявки пока недоступны. Позвоните: +7 (917) 037-25-63.';
+        return;
+      }
       const fields = new FormData(form);
       const payload = {
         source: form.dataset.formName,
@@ -108,7 +115,9 @@ function installForms() {
         phone: fields.get('phone') || fields.get('contact_phone') || '',
         project: fields.get('project') || form.dataset.project || '',
         message: fields.get('contact_message') || '',
-        website: fields.get('website') || ''
+        website: fields.get('website') || '',
+        consent: fields.get('consent') === 'yes',
+        consentVersion: fields.get('consent_version') || ''
       };
       submitting = true;
       button.disabled = true;
@@ -116,6 +125,14 @@ function installForms() {
       status.classList.remove('is-error', 'is-success');
       status.textContent = 'Отправляем заявку…';
       try {
+        // This readiness request contains no form data; foreign/unconfigured hosts cannot receive a lead.
+        const readinessResponse = await fetch('/api/leads', { cache: 'no-store', signal: AbortSignal.timeout(5_000) });
+        const readiness = await readinessResponse.json();
+        if (!readinessResponse.ok || readiness.ready !== true) {
+          status.classList.add('is-error');
+          status.textContent = 'Онлайн-заявки пока недоступны. Позвоните: +7 (917) 037-25-63.';
+          return;
+        }
         const response = await fetch('/api/leads', {
           method: 'POST', headers: { 'content-type': 'application/json' },
           body: JSON.stringify(payload), signal: AbortSignal.timeout(20_000)

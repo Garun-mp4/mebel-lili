@@ -1,3 +1,8 @@
+import { createHash } from 'node:crypto';
+import { operatorReady, consentVersion } from '../legal/operator.mjs';
+import { legalBodies } from '../src/legal-documents.mjs';
+import { saveLead, storageConfig } from './lead-store.mjs';
+
 const MAX_BODY_BYTES = 16_384;
 const sources = { hero: 'Первый экран', mid: 'Фото и размеры', contact: 'Контакты' };
 const projects = new Set(['', 'Кухня', 'Шкаф', 'Корпусная мебель', 'Другая мебель на заказ', 'Стеклянная мебель']);
@@ -28,7 +33,7 @@ async function readBody(request) {
 }
 
 function allowRequest(request) {
-  // Best-effort per-instance limit. Vercel Firewall can enforce a global limit.
+  // Best-effort per-instance limit; supplement at the Russian reverse proxy.
   const now = Date.now();
   for (const [key, item] of limits) if (item.until <= now) limits.delete(key);
   const key = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'local';
@@ -39,10 +44,16 @@ function allowRequest(request) {
   return true;
 }
 
-export async function handleLeadRequest(request, { env = process.env, fetchImpl = fetch } = {}) {
+export function collectionReady(env = process.env) {
+  if (env.VERCEL || env.LEADS_RU_HOSTING_CONFIRMED !== 'true' || !operatorReady()) return false;
+  try { storageConfig(env); return true; } catch { return false; }
+}
+
+export async function handleLeadRequest(request, { env = process.env, fetchImpl = fetch, ready = collectionReady, persist = saveLead } = {}) {
+  if (request.method === 'GET') return reply(200, 'Готовность приёма заявок.', { ready: ready(env) });
   if (request.method !== 'POST') {
     const response = reply(405, 'Используйте форму на сайте.');
-    response.headers.set('allow', 'POST');
+    response.headers.set('allow', 'GET, POST');
     return response;
   }
   const origin = request.headers.get('origin');
@@ -52,6 +63,8 @@ export async function handleLeadRequest(request, { env = process.env, fetchImpl 
   if (!request.headers.get('content-type')?.toLowerCase().startsWith('application/json')) {
     return reply(415, 'Неверный формат запроса.');
   }
+  // Reject before parsing personal data while the legal operator and Russian storage are unconfigured.
+  if (!ready(env)) return reply(503, 'Онлайн-заявки пока недоступны. Позвоните: +7 (917) 037-25-63.');
   let data;
   try { data = await readBody(request); }
   catch (error) { return reply(error instanceof RangeError ? 413 : 400, 'Не удалось прочитать заявку. Проверьте поля.'); }
@@ -68,27 +81,30 @@ export async function handleLeadRequest(request, { env = process.env, fetchImpl 
   if (!Object.hasOwn(sources, data.source) || !projects.has(project) || message.length > 1500 || data.website) {
     return reply(400, 'Проверьте тип проекта и комментарий (до 1500 символов).');
   }
-  if (!env.TELEGRAM_BOT_TOKEN?.trim() || !env.TELEGRAM_CHAT_ID?.trim()) {
-    return reply(503, 'Отправка заявок пока недоступна. Позвоните: +7 (917) 037-25-63.');
-  }
+  if (data.consent !== true || data.consentVersion !== consentVersion) return reply(400, 'Дайте отдельное согласие на обработку данных. Если документ обновился, перезагрузите страницу.');
   if (!allowRequest(request)) return reply(429, 'Слишком много заявок. Подождите минуту или позвоните нам.');
-  const text = [
-    'Новая заявка · Mebel Lili', `Форма: ${sources[data.source]}`, `Имя: ${name}`,
-    `Телефон: ${phone}`, project && `Мебель: ${project}`, message && `Комментарий:\n${message}`
-  ].filter(Boolean).join('\n');
+  let receipt;
   try {
-    const response = await fetchImpl(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN.trim()}/sendMessage`, {
-      method: 'POST', headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID.trim(), text, link_preview_options: { is_disabled: true } }),
-      signal: AbortSignal.timeout(12_000)
-    });
-    const result = await response.json();
-    if (!response.ok || result.ok !== true || !Number.isInteger(result.result?.message_id)) {
-      return reply(502, 'Заявка не доставлена. Попробуйте позже или позвоните: +7 (917) 037-25-63.');
+    receipt = await persist({ source: data.source, name, phone, project, message, consent: {
+      accepted: true, version: consentVersion, method: 'separate-unchecked-checkbox-and-submit',
+      document: legalBodies.consent.body, sha256: createHash('sha256').update(legalBodies.consent.body).digest('hex')
+    } }, env);
+  } catch { return reply(503, 'Заявка не сохранена. Позвоните: +7 (917) 037-25-63 или попробуйте позже.'); }
+  // The Russian record is the delivery acknowledgement. Telegram is optional and contains no form fields.
+  if (env.TELEGRAM_BOT_TOKEN?.trim() && env.TELEGRAM_CHAT_ID?.trim()) {
+    try {
+      const response = await fetchImpl(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN.trim()}/sendMessage`, {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID.trim(), text: `Новая заявка · Mebel Lili\nНомер: ${receipt.id}\nОткройте заявку на российском сервере.`, link_preview_options: { is_disabled: true } }),
+        signal: AbortSignal.timeout(3_000)
+      });
+      const result = await response.json();
+      if (!response.ok || result.ok !== true || !Number.isInteger(result.result?.message_id)) {
+        console.warn('Lead saved; optional Telegram notification was not acknowledged.');
+      }
+    } catch {
+      console.warn('Lead saved; optional Telegram notification failed.');
     }
-    return reply(200, 'Заявка отправлена. Свяжемся с вами по указанному телефону.');
-  } catch {
-    // Never log the upstream URL: it contains the bot token.
-    return reply(504, 'Не удалось подтвердить отправку. Позвоните: +7 (917) 037-25-63 или попробуйте позже.');
   }
+  return reply(200, `Заявка принята. Свяжемся с вами по указанному телефону. Номер: ${receipt.id}`, { id: receipt.id });
 }
