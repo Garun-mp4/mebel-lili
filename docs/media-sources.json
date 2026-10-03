@@ -225,7 +225,9 @@
     "file": "public/assets/kitchen-modern.webp",
     "matchesArchiveFile": "Modern L-Shaped Kitchen Interior-1.png",
     "meanPixelDifference": 0.27,
-    "classification": "illustration"
+    "classification": "illustration",
+    "usage": "hero",
+    "selectedByUser": true
   },
   {
     "file": "public/assets/kitchen-project.webp",

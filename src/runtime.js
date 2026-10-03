@@ -32,10 +32,10 @@ function installHeader() {
     document.body.classList.remove('menu-open');
     main.inert = false;
     footer.inert = false;
+    if (restoreFocus || (small.matches && menu.contains(document.activeElement))) burger.focus({ preventScroll: true });
     burger.setAttribute('aria-expanded', 'false');
     burger.setAttribute('aria-label', 'Открыть меню');
     menu.setAttribute('aria-hidden', String(small.matches));
-    if (restoreFocus) burger.focus({ preventScroll: true });
   };
   const open = () => {
     header.classList.add('is-open');
@@ -60,6 +60,7 @@ function installHeader() {
   });
   listen(small, 'change', () => { close(); syncScroll(); });
   listen(window, 'scroll', syncScroll, { passive: true });
+  listen(window, 'resize', syncScroll);
   close();
   syncScroll();
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -69,11 +70,12 @@ function installHeader() {
       const target = document.querySelector(href);
       if (!target) return;
       event.preventDefault();
+      const fromMenu = header.classList.contains('is-open');
       close();
       const top = target.getBoundingClientRect().top + window.scrollY - header.offsetHeight - 20;
       const keyboard = event.detail === 0;
       window.scrollTo({ top, behavior: reduced.matches || keyboard ? 'instant' : 'smooth' });
-      if (keyboard) {
+      if (keyboard || fromMenu) {
         const focusTarget = target.querySelector('h1,h2,h3') || target;
         focusTarget.tabIndex = -1;
         focusTarget.focus({ preventScroll: true });
