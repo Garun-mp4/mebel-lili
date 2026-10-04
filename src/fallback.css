@@ -1,8 +1,10 @@
 @font-face{font-family:Jost;src:url('/fonts/jost-variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+/* Match Jost's metrics while its local WOFF2 loads; keep the final typeface unchanged. */
+@font-face{font-family:'Jost Fallback';src:local('Arial');size-adjust:94.8569%;ascent-override:112.8015%;descent-override:39.5332%;line-gap-override:0%}
 @font-face{font-family:'IBM Plex Mono';src:url('/fonts/ibm-plex-mono-regular.woff2') format('woff2');font-weight:400;font-display:swap}
 :root{
  --neutral-100:#f2f2f2;--neutral-200:#e8ebeb;--neutral-300:#9bacae;--neutral-400:#71797a;--neutral-500:#494f52;--neutral-600:#17181a;
- --chromata-400:#25b895;--chromata-600:#136157;--font-primary:'IBM Plex Mono',monospace;--font-secondary:Jost,sans-serif;
+ --chromata-400:#25b895;--chromata-600:#136157;--font-primary:'IBM Plex Mono',monospace;--font-secondary:Jost,'Jost Fallback',sans-serif;
  --border-style:1px dashed var(--neutral-300);--border-radius:2px;--header-height:50px;--width-content:min(clamp(1040px,80vw,1420px),100%);font-size:15px;
 }
 html{scroll-behavior:smooth;background:var(--neutral-100)}
