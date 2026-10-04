@@ -4,9 +4,12 @@ import fsp from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Readable } from 'node:stream';
+import { createGzip } from 'node:zlib';
+import { pipeline } from 'node:stream/promises';
 import { handleLeadRequest, collectionReady } from './server/leads.mjs';
 import { purgeExpired } from './server/lead-store.mjs';
 import { operator, operatorReady } from './legal/operator.mjs';
+import { SERVICES } from './seo/site.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(__dirname, 'dist');
@@ -25,6 +28,9 @@ const mime = {
   '.mjs': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8',
+  '.ttf': 'font/ttf',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
@@ -43,14 +49,24 @@ function isInside(root, target) {
   return relative && !relative.startsWith('..') && !path.isAbsolute(relative) || relative === '';
 }
 
-async function sendFile(res, filePath) {
+async function sendFile(req, res, filePath) {
   const stat = await fsp.stat(filePath);
   if (!stat.isFile()) return false;
+  const acceptsGzip = (req.headers['accept-encoding'] || '').split(',').some(value => {
+    const [encoding, ...parameters] = value.trim().split(';');
+    return encoding === 'gzip' && !parameters.some(parameter => /^\s*q\s*=\s*0(?:\.0*)?\s*$/.test(parameter));
+  });
+  const compress = acceptsGzip && /\.(html|css|js|mjs|json|xml|txt|svg)$/.test(filePath);
+  const immutable = /\.(?:[a-f0-9]{12})\.(?:css|js)$/.test(filePath);
   res.writeHead(200, {
     'content-type': mime[path.extname(filePath).toLowerCase()] || 'application/octet-stream',
-    'cache-control': filePath.endsWith('.html') ? 'no-cache' : 'public, max-age=3600'
+    'cache-control': filePath.endsWith('.html') ? 'no-cache' : immutable ? 'public, max-age=31536000, immutable' : 'public, max-age=3600',
+    'vary': 'Accept-Encoding',
+    ...(compress ? { 'content-encoding': 'gzip' } : {})
   });
-  fs.createReadStream(filePath).pipe(res);
+  if (req.method === 'HEAD') { res.end(); return true; }
+  if (compress) await pipeline(fs.createReadStream(filePath), createGzip(), res);
+  else await pipeline(fs.createReadStream(filePath), res);
   return true;
 }
 
@@ -86,7 +102,13 @@ async function serve(req, res) {
     return;
   }
 
-  if (pathname === '/') pathname = '/index.html';
+  const canonicalPath = pathname === '/index.html' ? '/' : SERVICES.find(page => pathname === page.path.slice(0, -1) || pathname === `${page.path}index.html`)?.path;
+  if (canonicalPath) {
+    res.writeHead(308, { location: canonicalPath + url.search });
+    res.end();
+    return;
+  }
+  if (pathname === '/' || SERVICES.some(page => pathname === page.path)) pathname += 'index.html';
   const hasDist = fs.existsSync(path.join(distDir, 'index.html'));
   const roots = hasDist ? [distDir, publicDir] : [publicDir];
 
@@ -94,7 +116,7 @@ async function serve(req, res) {
     const target = path.resolve(root, `.${pathname}`);
     if (!isInside(root, target)) continue;
     try {
-      if (await sendFile(res, target)) return;
+      if (await sendFile(req, res, target)) return;
     } catch {}
   }
 

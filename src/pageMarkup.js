@@ -8,7 +8,7 @@ export const PAGE_HTML = /* html */ String.raw`
 <nav aria-label="Основная навигация" class="cb-site-header__nav">
 <div class="cb-site-header__logo-wrap">
 <a aria-current="page" class="custom-logo-link lili-logo" href="#top" rel="home">
-<img alt="Mebel Lili" class="custom-logo" src="/assets/lili-logo.png" width="1254" height="1254"/>
+<img alt="Mebel Lili" class="custom-logo" src="/assets/lili-logo.png" width="1254" height="1254" decoding="async" fetchpriority="low"/>
 </a>
 <a class="cb-site-header__logo--dark lili-logo lili-logo--dark" href="#top">
 <img alt="Mebel Lili" class="custom-logo" src="/assets/lili-logo.png" width="1254" height="1254"/>
@@ -56,7 +56,7 @@ export const PAGE_HTML = /* html */ String.raw`
 <img class="hero-frontpage__video hero-frontpage__image" src="/assets/kitchen-modern.webp" alt="Интерьер угловой кухни в светлых тонах" fetchpriority="high" width="1672" height="941"/>
 </picture>
 <div class="hero-frontpage__content">
-<h1 class="hero-frontpage__heading">МЕБЕЛЬ ДЛЯ<br/>ВАШЕГО ПРОСТРАНСТВА</h1>
+<h1 class="hero-frontpage__heading">МЕБЕЛЬ НА ЗАКАЗ <br/>В САМАРЕ</h1>
 <p class="hero-frontpage__intro">Кухни, шкафы и корпусная мебель на заказ. Обсудим планировку, материалы и то, как вы хотите пользоваться своим пространством.</p>
 <form class="lead-form hero-lead-form" data-form-name="hero" action="/api/leads" method="post">
 <div class="form-honeypot" aria-hidden="true">
@@ -299,6 +299,7 @@ ${consentMarkup('hero')}
 </section>
 
 <section id="furniture" class="cb-block cb-block--business-areas cb-fullbleed--both business-areas--snap" style="--margin-lg-top:100px;--margin-lg-bottom:100px;--margin-md-top:50px;--margin-md-bottom:50px;--margin-sm-top:20px;--margin-sm-bottom:20px;">
+<h2 class="screen-reader-text">Направления мебели на заказ</h2>
 <div class="business-areas__sticky">
 <div class="business-areas__grid">
 <article class="business-areas__card" style="--card-bg:#E8EBEB;--card-color:var(--neutral-600);--card-color-inverse:var(--neutral-100);">
@@ -315,6 +316,7 @@ ${consentMarkup('hero')}
 </div>
 <div class="business-areas__card-content">
 <p class="business-areas__excerpt">Кухня начинается не с фасада, а с вашего пространства. Продумываем расположение модулей и хранение так, чтобы мебель была удобной в ежедневном использовании.</p>
+<a class="service-detail-link" href="/kuhni-na-zakaz-samara/">Подробнее о кухнях на заказ</a>
 <a class="cb-button business-areas__btn" data-project="Кухня" href="#request">
 <span class="cb-button__title">Обсудить кухню</span>
 <span aria-hidden="true" class="cb-button__arrow">
@@ -343,6 +345,7 @@ ${consentMarkup('hero')}
 </div>
 <div class="business-areas__card-content">
 <p class="business-areas__excerpt">Шкафы и встроенные решения под конкретную нишу, стену или комнату. Поможем подобрать компоновку и материалы под интерьер и задачи хранения.</p>
+<a class="service-detail-link" href="/shkafy-na-zakaz-samara/">Подробнее о шкафах на заказ</a>
 <a class="cb-button business-areas__btn" data-project="Шкаф" href="#request">
 <span class="cb-button__title">Обсудить шкафы</span>
 <span aria-hidden="true" class="cb-button__arrow">
@@ -357,7 +360,7 @@ ${consentMarkup('hero')}
 </div>
 </div>
 </article>
-<article class="business-areas__card" style="--card-bg:#697172;--card-color:var(--neutral-100);--card-color-inverse:var(--neutral-600);">
+<article class="business-areas__card" style="--card-bg:#656d6e;--card-color:var(--neutral-100);--card-color-inverse:var(--neutral-600);">
 <div class="business-areas__card-left">
 <span class="business-areas__number">03</span>
 <div class="business-areas__card-info">
@@ -371,6 +374,7 @@ ${consentMarkup('hero')}
 </div>
 <div class="business-areas__card-content">
 <p class="business-areas__excerpt">Тумбы, модули и другие корпусные решения, которые связывают интерьер в единую систему и используют доступное пространство без случайных элементов.</p>
+<a class="service-detail-link" href="/korpusnaya-mebel-samara/">Подробнее о корпусной мебели</a>
 <a class="cb-button business-areas__btn" data-project="Корпусная мебель" href="#request">
 <span class="cb-button__title">Обсудить корпусную мебель</span>
 <span aria-hidden="true" class="cb-button__arrow">
@@ -447,7 +451,7 @@ ${consentMarkup('hero')}
 
 <section id="reviews" class="cb-block cb-block--logo-gallery reviews-band" style="--margin-lg-top:100px;--margin-lg-bottom:100px;--margin-md-top:50px;--margin-md-bottom:50px;--margin-sm-top:20px;--margin-sm-bottom:20px;">
 <header class="logo-gallery__header">
-<p class="logo-gallery__heading">КЛИЕНТЫ О MEBEL LILI</p>
+<h2 class="logo-gallery__heading">КЛИЕНТЫ О MEBEL LILI</h2>
 <div class="logo-gallery__separator">
 </div>
 <p class="reviews-band__rating">4.3 / 5 · Яндекс Карты</p>
@@ -767,6 +771,9 @@ ${consentMarkup('contact')}
 </div>
 <div class="cb-site-footer__bar">
 <nav aria-label="Навигация в подвале" class="cb-site-footer__nav">
+<a class="cb-site-footer__nav-link" href="/kuhni-na-zakaz-samara/">КУХНИ</a>
+<a class="cb-site-footer__nav-link" href="/shkafy-na-zakaz-samara/">ШКАФЫ</a>
+<a class="cb-site-footer__nav-link" href="/korpusnaya-mebel-samara/">КОРПУСНАЯ МЕБЕЛЬ</a>
 <a class="cb-site-footer__nav-link" href="#furniture">02 МЕБЕЛЬ</a>
 <a class="cb-site-footer__nav-link" href="#projects">04 ПРОЕКТЫ</a>
 </nav>

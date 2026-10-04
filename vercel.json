@@ -3,10 +3,24 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/:path*", "has": [{ "type": "host", "value": "mebel-lili-garun-s-projects.vercel.app" }], "destination": "https://mebel-lili.vercel.app/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "mebel-lili-git-main-garun-s-projects.vercel.app" }], "destination": "https://mebel-lili.vercel.app/:path*", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/kuhni-na-zakaz-samara", "destination": "/kuhni-na-zakaz-samara/", "permanent": true },
+    { "source": "/shkafy-na-zakaz-samara", "destination": "/shkafy-na-zakaz-samara/", "permanent": true },
+    { "source": "/korpusnaya-mebel-samara", "destination": "/korpusnaya-mebel-samara/", "permanent": true },
+    { "source": "/kuhni-na-zakaz-samara/index.html", "destination": "/kuhni-na-zakaz-samara/", "permanent": true },
+    { "source": "/shkafy-na-zakaz-samara/index.html", "destination": "/shkafy-na-zakaz-samara/", "permanent": true },
+    { "source": "/korpusnaya-mebel-samara/index.html", "destination": "/korpusnaya-mebel-samara/", "permanent": true }
+  ],
   "functions": {
     "api/leads.js": { "maxDuration": 20 }
   },
   "headers": [
+    { "source": "/:asset(fallback|app).:hash([a-f0-9]{12}).:extension(css|js)", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+    ] },
     { "source": "/(.*)", "headers": [
       { "key": "X-Content-Type-Options", "value": "nosniff" },
       { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }

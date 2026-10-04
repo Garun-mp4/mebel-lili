@@ -19,7 +19,10 @@ function installHeader() {
   const syncScroll = () => {
     header.classList.toggle('is-scrolled', window.scrollY > 24);
     let current = '#top';
-    const targets = links.map(link => ({ link, target: document.querySelector(link.getAttribute('href')) })).filter(item => item.target).sort((a, b) => a.target.offsetTop - b.target.offsetTop);
+    const targets = links.map(link => {
+      const href = link.getAttribute('href');
+      return { link, target: href?.startsWith('#') ? document.getElementById(href.slice(1)) : null };
+    }).filter(item => item.target).sort((a, b) => a.target.offsetTop - b.target.offsetTop);
     targets.forEach(({ link, target }) => { if (target.getBoundingClientRect().top <= header.offsetHeight + 100) current = link.getAttribute('href'); });
     links.forEach(link => {
       const active = link.getAttribute('href') === current;

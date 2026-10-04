@@ -1,5 +1,5 @@
-@font-face{font-family:Jost;src:url('/fonts/jost-variable.ttf') format('truetype');font-weight:100 900;font-display:swap}
-@font-face{font-family:'IBM Plex Mono';src:url('/fonts/ibm-plex-mono-regular.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:Jost;src:url('/fonts/jost-variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('/fonts/ibm-plex-mono-regular.woff2') format('woff2');font-weight:400;font-display:swap}
 :root{
  --neutral-100:#f2f2f2;--neutral-200:#e8ebeb;--neutral-300:#9bacae;--neutral-400:#71797a;--neutral-500:#494f52;--neutral-600:#17181a;
  --chromata-400:#25b895;--chromata-600:#136157;--font-primary:'IBM Plex Mono',monospace;--font-secondary:Jost,sans-serif;
@@ -20,6 +20,31 @@ button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}
 button:disabled{cursor:wait;opacity:.55}
 :focus-visible{outline:2px solid currentColor;outline-offset:5px}
 ::selection{color:var(--neutral-100);background:var(--neutral-600)}
+.service-detail-link{display:inline-flex;align-items:center;min-height:44px;margin-bottom:.5rem;font-size:.85rem;color:var(--card-color)}
+.service-detail-link:hover{ text-decoration-thickness:2px }
+.service-page .cb-block{grid-column:2 / -2}
+.service-page .service-intro{margin-top:110px;margin-bottom:80px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.75fr);gap:clamp(2rem,5vw,6rem);align-items:center}
+.service-intro h1{font-size:clamp(2.4rem,4.5vw,4.5rem);line-height:1.12;margin-bottom:2rem}
+.service-intro__text{max-width:55ch;line-height:1.7;margin-bottom:2rem}
+.service-breadcrumbs{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;margin-bottom:2.5rem;font-size:.8rem}
+.service-breadcrumbs a{min-height:44px;display:inline-flex;align-items:center}
+.service-intro__photo{margin:0;min-width:0}
+.service-intro__photo img{width:100%;height:auto;max-height:620px;object-fit:contain;object-position:center}
+.service-intro__photo figcaption{font-size:.75rem;line-height:1.6;margin-top:1rem;color:var(--neutral-500)}
+.service-content{margin-bottom:80px}
+.service-section{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(2rem,5vw,6rem);padding-block:3rem;border-top:var(--border-style)}
+.service-section h2{font-size:clamp(1.6rem,2.8vw,2.7rem);margin:0}
+.service-section p{max-width:70ch;line-height:1.8;margin-bottom:1.25rem}
+.service-section p:last-child{margin-bottom:0}
+.service-faq details{border-bottom:var(--border-style);padding-block:1rem}
+.service-faq summary{cursor:pointer;min-height:44px;line-height:1.6;display:list-item}
+.service-faq details[open] summary{margin-bottom:1rem}
+.service-links{display:flex;flex-direction:column;align-items:flex-start;gap:.75rem}
+.service-links a{display:inline-flex;align-items:center;min-height:44px}
+.mebel-lili-site:has(.service-page) .cb-site-header{background:var(--neutral-100);color:var(--neutral-600)}
+.mebel-lili-site:has(.service-page) .cb-site-header .lili-logo img{filter:brightness(0)}
+@media(max-width:1024px){.service-page .cb-block{width:calc(100% - 3rem)}.service-page .service-intro{gap:2rem;margin-top:90px}.service-section{gap:2rem}}
+@media(max-width:767px){.service-page .cb-block{width:calc(100% - 2.5rem)}.service-page .service-intro{grid-template-columns:1fr;margin-top:80px;margin-bottom:3rem;gap:2rem}.service-intro h1{font-size:clamp(2.2rem,9vw,3rem)}.service-intro__photo img{max-height:520px}.service-section{grid-template-columns:1fr;gap:1.5rem;padding-block:2rem}.service-content{margin-bottom:3rem}}
 .mebel-lili-root,#page{display:block;width:100%}
 .cb-block{width:var(--width-content);margin-inline:auto;margin-block-start:var(--margin-lg-top,0);margin-block-end:var(--margin-lg-bottom,0)}
 .cb-fullbleed--both{width:100%;max-width:none}
@@ -80,6 +105,7 @@ button:disabled{cursor:wait;opacity:.55}
 .hero-lead-form .cb-button__title,.hero-lead-form .cb-button__arrow{background:var(--neutral-100);color:var(--neutral-600);min-height:4.05rem}
 .hero-lead-form .cb-button__title{padding:1rem}
 .lead-form__status{font-size:.8rem;line-height:1.5;margin:.5rem 0 0;min-height:1.5em}
+.contact__details-find-us{color:var(--neutral-500)!important}
 .hero-lead-form .lead-form__status{color:var(--neutral-100)}
 /* Statement / KPIs */
 .cb-block--statement-text .statement-text__text{max-width:1200px}
